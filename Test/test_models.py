@@ -2,6 +2,7 @@ import unittest
 from Game.game import (
     BagTiles,
     Tile,
+    ScrabbleTiles,
 )
 from unittest.mock import patch
 
@@ -51,6 +52,13 @@ class TestBagTiles(unittest.TestCase):
             len(bag.tiles),
             7,
         )
+
+    
+class TestInitialization(unittest.TestCase):
+    def test_initialization(self):
+        scrabble_tiles = ScrabbleTiles()
+        tiles_count = scrabble_tiles.tiles_left()
+        assert tiles_count == 100
 
 
 if __name__ == '__main__':
