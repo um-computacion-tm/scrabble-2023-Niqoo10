@@ -1,22 +1,27 @@
 from Game.board import Board
 from Game.player import Player
-from Game.game import BagTiles
+from Game.bagtile import BagTiles
+from Game.tile import Tile
 
 class ScrabbleGame:
-    def __init__(self, players_count: int):
+    def __init__(self, players_count):
         self.board = Board()
         self.bag_tiles = BagTiles()
-        self.players:list[Player] = []
+        self.players = []
+        self.current_player = 0
         for _ in range(players_count):
-            self.players.append(Player(bag_tiles=self.bag_tiles))
-        
-        self.current_player = None
+            self.players.append(Player())
+
+    def start_game(self):
+        for player in self.players:
+            tilesToDraw = 7 - len(player.tiles)
+            newTiles = self.bag_tiles.take(tilesToDraw)
+            player.tiles.extend(newTiles)
 
     def next_turn(self):
-        if self.current_player is None:
-            self.current_player = self.players[0]
-        else:
-            #index = index del current player + 1
-            #len(self.players)
-            index = self.players.index(self.current_player) + 1
-            self.current_player = self.players[index]
+        self.current_player += 1
+        if self.current_player >= len(self.players):
+            self.current_player = 0
+
+if __name__ == '__main__':
+    pass

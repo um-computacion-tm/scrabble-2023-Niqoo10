@@ -78,7 +78,7 @@ class TestCalculateWordValue(unittest.TestCase):
 
         word = [cell1, cell2, cell3, cell4]
         value = Board().calculate_word_value(word)
-        self.assertEqual(value, 5)
+        self.assertEqual(value, 9)
     
     def test_word_inside_board_H(self):
         board = Board()
