@@ -18,9 +18,7 @@ jobs:
       - run:
           name: Running Tests
           command: coverage run -m unittest && coverage xml && coverage report -m
-
-workflows:
-  version: 2
-  build-deploy:
-    jobs:
-      - build
+      - run:
+          name: Update CodeClimate coverage report
+          command: |
+              ./cc-test-reporter after-build
