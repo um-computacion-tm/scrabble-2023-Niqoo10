@@ -1,3 +1,5 @@
 .coverage
 __pycache__/*
-*/__pycache__/*x
+*/__pycache
+.vscode
+env

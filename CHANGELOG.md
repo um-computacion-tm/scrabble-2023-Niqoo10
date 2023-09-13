@@ -3,6 +3,29 @@
 ## [Unreleased]
 - None.
 
+## [1.0.5] - 2023-08-03
+### Cambios Agregados
+
+- Added CircleCI.
+
+### Cambios Modificados
+- Improvement in the test.
+
+### Correcciones de Errores
+- Corrected syntax.
+
+## [1.0.4] - 2023-08-30
+### Cambios Agregados
+
+- Added bagtile.
+- Added game.
+
+### Cambios Modificados
+- Improvement in the test.
+
+### Correcciones de Errores
+- Corrected syntax.
+
 ## [1.0.3] - 2023-08-24
 ### Cambios Agregados
 
