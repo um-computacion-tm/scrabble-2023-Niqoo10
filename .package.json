@@ -1,4 +1,0 @@
-"scripts": {
-    "test": "Test",
-    "cover": "nyc --reporter=lcov --reporter=text mocha"
-  },
