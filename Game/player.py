@@ -11,6 +11,7 @@ class Player:
             for tile in word:
                 self.tiles.remove(tile)
             return True
+        
 
 if __name__ == '__main__':
     pass

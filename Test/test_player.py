@@ -1,6 +1,7 @@
 import unittest
 from Game.player import Player
 from Game.tile import Tile
+from Game.bagtile import BagTiles
 
 class TestPlayer(unittest.TestCase):
     def test_init(self):
@@ -26,6 +27,7 @@ class TestPlayer(unittest.TestCase):
             result = player.play_word(word_to_play)
         
         self.assertEqual(len(player.tiles), 3)
+
 
 if __name__ == '__main__':
     unittest.main()
