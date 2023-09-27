@@ -6,14 +6,29 @@
 ## [1.0.6] - 2023-09-26
 ### Cambios Agregados
 
-- None
+- Funcionality.
+- Codeclimate config.
 
 ### Cambios Modificados
 - Improvement in the test.
 
 ### Correcciones de Errores
 - Corrected syntax.
-- Fix
+- Fix.
+- Corected CircleCI
+
+
+## [1.0.6] - 2023-09-26
+### Cambios Agregados
+
+- None.
+
+### Cambios Modificados
+- Improvement in the test.
+
+### Correcciones de Errores
+- Corrected syntax.
+- Fix.
 
 ## [1.0.5] - 2023-08-03
 ### Cambios Agregados
