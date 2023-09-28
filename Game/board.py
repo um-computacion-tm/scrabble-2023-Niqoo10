@@ -1,8 +1,30 @@
 from Game.cell import Cell
+from Game.tile import Tile
 
 class Board:
     def __init__(self):
         self.grid = [[Cell(1, '') for _ in range(15) ]for _ in range(15)]
+
+    @property
+    def is_empty(self):
+        return all(all(cell == ' ' for cell in row) for row in self.grid)
+
+    def validate_word_place_board(self, word, location, orientation):
+        x, y = location
+        if orientation == 'H':
+            for letter in word:
+                if self.grid[x][y] != ' ':
+                    return False
+                x += 1
+        elif orientation == 'V':
+            for letter in word:
+                if self.grid[x][y] != ' ':
+                    return False
+                y += 1
+        else:
+            return False
+        return True
+
 
     def calculate_word_value(self,word):
          value = 0
@@ -22,6 +44,7 @@ class Board:
         elif orientation == 'V' and x + len(word) > 15:
                 raise ValueError("La palabra no cabe en el tablero en la posicion especificada.")
         return orientation in ('H', 'V')
+    
     
 if __name__ == '__main__':
     pass
