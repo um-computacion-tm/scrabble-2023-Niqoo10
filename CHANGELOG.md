@@ -3,7 +3,29 @@
 ## [Unreleased]
 - None.
 
-## [1.0.5] - 2023-08-03
+## [1.0.7] - 2023-09-29
+### Cambios Agregados
+
+- Corrected TDD (2023-09-28)
+
+### Cambios Modificados
+- Improvement in the test.
+
+### Correcciones de Errores
+- Corrected syntax.
+
+## [1.0.6] - 2023-09-28
+### Cambios Agregados
+
+- Add TDD 
+
+### Cambios Modificados
+- Improvement in the test.
+
+### Correcciones de Errores
+- Corrected syntax.
+
+## [1.0.5] - 2023-09-27
 ### Cambios Agregados
 
 - Added CircleCI.
