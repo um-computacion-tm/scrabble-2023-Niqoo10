@@ -3,6 +3,17 @@
 ## [Unreleased]
 - None.
 
+## [1.0.8] - 2023-09-30
+### Cambios Agregados
+
+- New TDD cell
+
+### Cambios Modificados
+- Improvement in the test.
+
+### Correcciones de Errores
+- Corrected syntax.
+
 ## [1.0.7] - 2023-09-29
 ### Cambios Agregados
 

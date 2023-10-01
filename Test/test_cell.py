@@ -4,7 +4,7 @@ from Game.tile import Tile
 from Game.player import Player
 
 
-'''class CellTestCase(unittest.TestCase):
+class CellTestCase(unittest.TestCase):
     def setUp(self):
         self.cell = Cell()
     
@@ -20,7 +20,7 @@ from Game.player import Player
         self.assertEqual(removed_letter, tile)
         self.assertIsNone(self.cell.letter)
         
-    def test_add_player_starting_position(self):
+    def test_add_player_starting_position(self, name):
         player = Player('John')
         self.cell.add_player_starting_position(player)
         self.assertTrue(self.cell.is_starting_position)
@@ -82,9 +82,10 @@ class CalculateValueTestCase(unittest.TestCase):
         self.assertEqual(Calculate_value.calculate_word_multiplier(cell3), 1)
         
 if __name__ == '__main__':
-    unittest.main()'''
+    unittest.main()
 
-class TestCell(unittest.TestCase):
+#Antiguo (probando)
+'''class TestCell(unittest.TestCase):
     def test_init(self):
         cell = Cell(multiplier=2, multiplier_type=True)
         self.assertEqual(cell.multiplier,2)
@@ -100,4 +101,4 @@ class TestCell(unittest.TestCase):
         self.assertEqual(cell.letter, letter)
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main()'''
