@@ -1,7 +1,9 @@
 from Game.tile import Tile
 
 class Player:
-    def __init__(self):
+    @staticmethod
+    def __init__(self, name):
+        self.name = name
         self.tiles = []
 
     def play_word(self, word):
