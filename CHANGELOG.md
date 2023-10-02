@@ -3,6 +3,19 @@
 ## [Unreleased]
 - None.
 
+## [1.0.9] - 2023-10-02
+### Cambios Agregados
+
+- Add refactor the entire code.
+- Add dictionary.txt.
+
+### Cambios Modificados
+- Improvement in the test.
+
+### Correcciones de Errores
+- Corrected syntax.
+- Corrected dictionary.py and test_dictionary.py.
+
 ## [1.0.9] - 2023-10-01
 ### Cambios Agregados
 
