@@ -41,13 +41,10 @@ class BagTiles:
     def take(self, count):
         if count > len(self.tiles):
             raise ValueError("No hay suficientes fichas en la bolsa.")
-        tiles = []
-        for _ in range(count):
-            tiles.append(self.tiles.pop())
-        return tiles
+        return [self.tiles.pop() for _ in range(count)]
 
     def put(self, tiles):
-        self.tiles.extend(tiles)
+        self.tiles += tiles
 
 if __name__ == '__main__':
     pass

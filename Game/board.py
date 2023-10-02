@@ -1,108 +1,45 @@
 from Game.cell import Cell
-from Game.tile import Tile
+from Game.dictionary import Dictionary
 
 class Board:
     def __init__(self):
-        self.size = 15  # Establece el tamaño del tablero
-        self.grid = [
-            [Cell(1, '') for _ in range(self.size)]
-            for _ in range(self.size)
-        ]
-
-    def place_tile(self, location_x, location_y, tile):
-        if 0 <= location_x < 15 and 0 <= location_y < 15:
-            cell = self.grid[location_x][location_y]
-            if cell.letter is None:
-                cell.add_letter(tile)
-                return True
-        return False
+        self.grid = [[Cell('', 1) for _ in range(15) ]for _ in range(15)]
     
-    def validate_word(self, start_location_x, start_location_y, word, orientation):
-        for i, letter in enumerate(word):
-            if orientation == 'Horizontal':
-                location_x = start_location_x
-                location_y = start_location_y + i
-            elif orientation == 'Vertical':
-                location_x = start_location_x + i
-                location_y = start_location_y
-
-            if location_x >= 15 or location_y >= 15 or (self.grid[location_x][location_y].letter is None or self.grid[location_x][location_y].letter.letter != letter):
-                return False
-        return True
-
-    def validate_word_inside_board(self, word, location, orientation):
-        location_x, location_y = location
-        word_length = len(word)
-
-        if orientation == "Horizontal":
-            return location_y + word_length <= 15
-        elif orientation == "Vertical":
-            return location_x + word_length <= 15
-
-    def validate_word_out_of_board(self, word, location, orientation):
-        return not self.validate_word_inside_board(word, location, orientation)
-
-
-    def validate_word_horizontal(self, word, location, orientation):
-        location_x, location_y = location
-        word_length = len(word)
-        found_letter = False
-
-        for i in range(word_length):
-            actual_tile = self.grid[location_x][location_y + i].letter
-            if actual_tile is not None and actual_tile.letter.lower() == word[i]:
-                found_letter = True
-
-        return found_letter and self.validate_word_inside_board(word, location, orientation)
-
-
-    def validate_word_vertical(self, word, location, orientation):
-        location_x, location_y = location
-        word_length = len(word)
-        found_letter = False
-        for i in range(word_length):
-            actual_tile = self.grid[location_x + i][location_y].letter
-            if actual_tile is not None:
-                if actual_tile.letter.lower() == word[i]:
-                    found_letter = True
-        return found_letter and self.validate_word_inside_board(word, location, orientation)
-
-
+    def calculate_word_value(self, word):
+        value = 0
+        word_multiplier = 1
+        for cell in word:
+            if not cell.multiplier_type and cell.active:
+                word_multiplier *= cell.multiplier
+            value += cell.calculate_value()
+            cell.active = False
+        value *= word_multiplier
+        return value
+    
+    def validate_word_inside_board(self, word, location, orientation, board_size=15):
+        x, y = location
+        if orientation == 'H':
+            if y + len(word) > board_size:
+                raise ValueError("La palabra no cabe en el tablero en la posicion especificada.")
+        elif orientation == 'V':
+            if x + len(word) > board_size:
+                raise ValueError("La palabra no cabe en el tablero en la posicion especificada.")
+        return orientation in ('H', 'V')
+    
+    def check_word(self, word, words_set):
+        return word.lower() in words_set
+    
+    def put_word(self, word, location, orientation):
+        x, y = location
+        dx, dy = (0, 1) if orientation == 'H' else (1, 0)
+        for letter in word:
+            self.grid[x][y].add_letter(letter)
+            x += dx
+            y += dy
+    
+    @property
     def is_empty(self):
-        if self.grid[7][7].letter is None:
-            return True
-        else:
-            return False
-
-    def word_in_the_center(self, word, location, orientation):
-        location_x, location_y = location
-        is_horizontal = orientation == "Horizontal"
-        is_vertical = orientation == "Vertical"
-
-        if is_horizontal and location_x == 7:
-            return self.validate_word_inside_board(word, location, orientation)
-
-        if is_vertical and location_y == 7:
-            return self.validate_word_inside_board(word, location, orientation)
-
-        return False
-
-
-    def validate_word_place_board(self, word, location, orientation):
-        if self.is_empty() is True:
-            return self.word_in_the_center(word, location, orientation)
-        else:
-            if orientation == "Horizontal":
-                return self.validate_word_horizontal(word, location, orientation)
-            else:
-                return self.validate_word_vertical(word, location, orientation)
-
-    # Agregar Función para Limpiar una Celda
-    def clear_cell(self, location_x, location_y):
-        if 0 <= location_x < 15 and 0 <= location_y < 15:
-            cell = self.grid[location_x][location_y]
-            if cell.letter is not None:
-                cell.remove_letter()
+        return not any(cell.letter for row in self.grid for cell in row)
 
 if __name__ == '__main__':
     pass

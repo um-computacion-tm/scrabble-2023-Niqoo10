@@ -1,6 +1,8 @@
 import unittest
 from Game.player import Player
 from Game.tile import Tile
+from io import StringIO
+import sys
 
 class TestPlayer(unittest.TestCase):
     def test_init(self):
@@ -23,9 +25,55 @@ class TestPlayer(unittest.TestCase):
 
         word_to_play = [Tile('A', 1), Tile('D', 2)]
         with self.assertRaises(ValueError):
-            result = player.play_word(word_to_play)
+            player.play_word(word_to_play)
         
         self.assertEqual(len(player.tiles), 3)
+
+    def test_assign_wildcard_value(self):
+        player = Player()
+        player.tiles = [Tile('', 0), Tile('A', 1), Tile('B', 1)]
+
+        letter = 'C'
+        value = 2
+
+        result = player.assign_wildcard_value(letter, value)
+        self.assertTrue(result)
+        self.assertEqual(len(player.tiles), 3)
+        self.assertEqual(player.tiles[2].letter, 'C')
+        self.assertEqual(player.tiles[2].value, 2)
+    
+    def test_wildcard_whit_no_wildcard(self):
+        player = Player()
+        player.tiles = [Tile('A', 1), Tile('B', 3)]
+
+        letter = 'C'
+        value = 2
+
+        player.assign_wildcard_value(letter, value)
+        self.assertEqual(len(player.tiles), 2)
+
+    def test_pass_turn(self):
+        player = Player()
+        self.assertFalse(player.passed_turn)
+        player.pass_turn_player()
+        self.assertTrue(player.passed_turn)
+
+    def test_display_rack(self):
+        player = Player()
+        player.tiles = [Tile('A', 1), Tile('B', 3), Tile('C', 3)]
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        player.mostrar_atril()
+        sys.stdout = sys.__stdout__
+        output_lines = captured_output.getvalue().strip().split('\n')
+        expected_output = [
+            "Atril del Jugador:",
+            "1: Tile('A',1)",
+            "2: Tile('B',3)",
+            "3: Tile('C',3)"
+        ]
+
+        self.assertEqual(output_lines, expected_output)
 
 if __name__ == '__main__':
     unittest.main()
