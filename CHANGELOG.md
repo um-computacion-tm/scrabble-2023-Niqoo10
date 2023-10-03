@@ -3,7 +3,19 @@
 ## [Unreleased]
 - None.
 
-## [1.0.9] - 2023-10-02
+## [1.0.9] - 2023-10-03
+### Cambios Agregados
+
+- Add refactor the entire code.
+- Add dictionary.txt.
+
+### Cambios Modificados
+- Changes in the Dictionary Test.
+
+### Correcciones de ErroresS
+- Corrected syntax.
+
+## [1.1.0] - 2023-10-02
 ### Cambios Agregados
 
 - Add refactor the entire code.
@@ -19,8 +31,8 @@
 ## [1.0.9] - 2023-10-01
 ### Cambios Agregados
 
-- Add dictionary.py
-- Add test_dictionary.py
+- Add dictionary.py.
+- Add test_dictionary.py.
 
 ### Cambios Modificados
 - Improvement in the test.
@@ -31,7 +43,7 @@
 ## [1.0.8] - 2023-09-30
 ### Cambios Agregados
 
-- New TDD cell
+- New TDD cell.
 
 ### Cambios Modificados
 - Improvement in the test.
@@ -42,7 +54,7 @@
 ## [1.0.7] - 2023-09-29
 ### Cambios Agregados
 
-- Corrected TDD (2023-09-28)
+- Corrected TDD (2023-09-28).
 
 ### Cambios Modificados
 - Improvement in the test.
@@ -53,7 +65,7 @@
 ## [1.0.6] - 2023-09-28
 ### Cambios Agregados
 
-- Add TDD 
+- Add TDD.
 
 ### Cambios Modificados
 - Improvement in the test.

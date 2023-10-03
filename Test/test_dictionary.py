@@ -33,5 +33,13 @@ class TestDiccionary(unittest.TestCase):
         with self.assertRaises(DictionaryConnectionError):
             validate_word('hola')
 
+    @patch(
+        'pyrae.dle.search_by_word',
+        return_value=None
+    )
+    def test_word_with_special_characters_raises_error(self, search_by_word_patched):
+        with self.assertRaises(DictionaryConnectionError):
+            validate_word('!@#$')
+
 if __name__ == '__main__':
     unittest.main()
