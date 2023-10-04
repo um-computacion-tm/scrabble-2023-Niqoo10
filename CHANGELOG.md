@@ -1,9 +1,22 @@
-# Changelog
+# CHANGELOG
 
 ## [Unreleased]
 - None.
 
-## [1.0.9] - 2023-10-03
+## [1.1.2] - 2023-10-04
+### Cambios Agregados
+
+- Add dictionary.txt.
+
+### Cambios Modificados
+
+- Dictionary Implementation.
+
+### Correcciones de ErroresS
+
+- Fixed bug in dictionary cover.
+
+## [1.1.1] - 2023-10-03
 ### Cambios Agregados
 
 - Add refactor the entire code.
@@ -12,7 +25,8 @@
 ### Cambios Modificados
 - Changes in the Dictionary Test.
 
-### Correcciones de ErroresS
+### Correcciones de Errores
+
 - Corrected syntax.
 
 ## [1.1.0] - 2023-10-02
@@ -22,9 +36,11 @@
 - Add dictionary.txt.
 
 ### Cambios Modificados
+
 - Improvement in the test.
 
 ### Correcciones de Errores
+
 - Corrected syntax.
 - Corrected dictionary.py and test_dictionary.py.
 
@@ -35,9 +51,11 @@
 - Add test_dictionary.py.
 
 ### Cambios Modificados
+
 - Improvement in the test.
 
 ### Correcciones de Errores
+
 - Corrected syntax.
 
 ## [1.0.8] - 2023-09-30
@@ -46,9 +64,11 @@
 - New TDD cell.
 
 ### Cambios Modificados
+
 - Improvement in the test.
 
 ### Correcciones de Errores
+
 - Corrected syntax.
 
 ## [1.0.7] - 2023-09-29
@@ -57,9 +77,11 @@
 - Corrected TDD (2023-09-28).
 
 ### Cambios Modificados
+
 - Improvement in the test.
 
 ### Correcciones de Errores
+
 - Corrected syntax.
 
 ## [1.0.6] - 2023-09-28
@@ -68,9 +90,11 @@
 - Add TDD.
 
 ### Cambios Modificados
+
 - Improvement in the test.
 
 ### Correcciones de Errores
+
 - Corrected syntax.
 
 ## [1.0.5] - 2023-09-27
@@ -79,9 +103,11 @@
 - Added CircleCI.
 
 ### Cambios Modificados
+
 - Improvement in the test.
 
 ### Correcciones de Errores
+
 - Corrected syntax.
 
 ## [1.0.4] - 2023-08-30
@@ -91,9 +117,11 @@
 - Added game.
 
 ### Cambios Modificados
+
 - Improvement in the test.
 
 ### Correcciones de Errores
+
 - Corrected syntax.
 
 ## [1.0.3] - 2023-08-24
@@ -102,9 +130,11 @@
 - Added player.
 
 ### Cambios Modificados
+
 - Improvement in the test.
 
 ### Correcciones de Errores
+
 - Corrected syntax.
 
 ## [1.0.2] - 2023-08-22
@@ -114,9 +144,11 @@
 - Added cell.
 
 ### Cambios Modificados
+
 - Improvement in the test.
 
 ### Correcciones de Errores
+
 - Corrected syntax.
 
 ## [1.0.1] - 2023-08-22
@@ -127,9 +159,11 @@
 - Added scrabletiles.
 
 ### Cambios Modificados
+
 - Improvement in the test.
 
 ### Correcciones de Errores
+
 - Corrected syntax.
 
 ## [1.0.0] - 2023-08-18
