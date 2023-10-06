@@ -3,6 +3,12 @@
 ## [Unreleased]
 - None.
 
+## [1.1.4] - 2023-10-06
+### Cambios Agregados
+
+- Add classes to main.py
+- Add TDD test_main.py
+
 ## [1.1.3] - 2023-10-05
 ### Cambios Agregados
 
