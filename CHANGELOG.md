@@ -3,6 +3,13 @@
 ## [Unreleased]
 - None.
 
+## [1.1.3] - 2023-10-05
+### Cambios Agregados
+
+- Add main.py
+- Add test_mian.py
+
+
 ## [1.1.2] - 2023-10-04
 ### Cambios Agregados
 
