@@ -3,17 +3,32 @@
 ## [Unreleased]
 - None.
 
+## [1.1.5] - 2023-10-07
+### Cambios Agregados
+
+- Add main.py.
+- Add test_main.py.
+
+### Cambios Modificados
+
+- Changes in main.py.
+- Changes in test_main.py.
+
+### Correcciones de Errores
+
+- Corrected syntax.
+
 ## [1.1.4] - 2023-10-06
 ### Cambios Agregados
 
-- Add classes to main.py
-- Add TDD test_main.py
+- Add classes to main.py.
+- Add TDD test_main.py.
 
 ## [1.1.3] - 2023-10-05
 ### Cambios Agregados
 
-- Add main.py
-- Add test_mian.py
+- Add main.py.
+- Add test_mian.py.
 
 
 ## [1.1.2] - 2023-10-04
