@@ -3,6 +3,12 @@
 ## [Unreleased]
 - None.
 
+## [1.1.6] - 2023-10-10
+### Cambios Agregados
+
+- Add test_calculatevalue.py.
+- Change cell.py.
+
 ## [1.1.5] - 2023-10-07
 ### Cambios Agregados
 
