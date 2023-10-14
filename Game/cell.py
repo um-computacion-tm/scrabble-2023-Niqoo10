@@ -1,3 +1,4 @@
+# cell.py
 from Game.tile import Tile
 from typing import List
 
@@ -85,3 +86,13 @@ class Calculate_value:
             return cell.multiplier
         else:
             return 1
+
+
+
+
+
+
+
+
+
+

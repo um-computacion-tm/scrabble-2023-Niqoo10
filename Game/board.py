@@ -3,7 +3,7 @@ from Game.tile import Tile
 
 class Board:
     def __init__(self):
-        self.size = 15  # Establece el tamaño del tablero
+        self.size = 15
         self.grid = [
             [Cell(1, '') for _ in range(self.size)]
             for _ in range(self.size)

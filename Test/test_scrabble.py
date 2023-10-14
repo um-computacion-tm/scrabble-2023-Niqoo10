@@ -1,93 +1,90 @@
 import unittest
 from Game.scrabble import ScrabbleGame
-from Game.player import Player
-from Game.bagtile import BagTiles
 from Game.tile import Tile
+from Game.board import Board
+from Game.cell import Cell
+from Game.player import Player
+from Game.dictionary import Dictionary
 
 class TestScrabbleGame(unittest.TestCase):
     def test_init(self):
         scrabble_game = ScrabbleGame(players_count=3)
-        self.assertIsNotNone(scrabble_game.board)
-        self.assertEqual(len(scrabble_game.players),3)
-        self.assertIsNotNone(scrabble_game.bag_tiles)
+        self.assertEqual(len(scrabble_game.players), 3)
+        self.assertEqual(scrabble_game.current_turn, 0)
 
-    def test_start_game(self):
-        player = Player()
-        game = ScrabbleGame(players_count = 3)
-        game.start_game()
-
-        for player in game.players:
-            self.assertEqual(len(player.tiles), 7)
+    def test_playing(self):
+        game = ScrabbleGame(players_count=2)
+        self.assertTrue(game.playing())
 
     def test_next_turn(self):
-        game = ScrabbleGame(players_count=3)
-        self.assertEqual(game.current_player, 0)
+        game = ScrabbleGame(2)
+        self.assertEqual(game.turn, 0)
         game.next_turn()
-        self.assertEqual(game.current_player, 1)
-        game.next_turn()
-        self.assertEqual(game.current_player, 2)
-        game.next_turn()
-        self.assertEqual(game.current_player, 0)
-        game.next_turn()
-        self.assertEqual(game.current_player, 1)
+        self.assertEqual(game.turn, 1)
 
-    def test_set_time(self):
-        game = ScrabbleGame(players_count = 2)
-        game.set_time_limit(60)
-        self.assertEqual(game.turn_limit, 60)
+    def test_next_turn_when_game_is_starting(self):
+        scrabble_game = ScrabbleGame(players_count=3)
+        scrabble_game.next_turn()
+        self.assertEqual(scrabble_game.current_player.name, scrabble_game.players[0].name)
 
-    def test_start_timer(self):
-        game = ScrabbleGame(players_count = 2)
-        game.set_time_limit(5)
-        game.start_timer()
-        import time
-        time.sleep(6)
-        self.assertEqual(game.current_player, 1)
+    def test_next_turn_when_player_is_not_the_first(self):
+        scrabble_game = ScrabbleGame(players_count=3)
+        scrabble_game.current_player = scrabble_game.players[0]
+        scrabble_game.next_turn()
+        self.assertEqual(scrabble_game.current_player.name, scrabble_game.players[1].name)
 
-    def test_pass_turn_scrabble(self):
-        game = ScrabbleGame(players_count = 2)
-        self.assertEqual(game.current_player, 0)
-        game.pass_turn_scrabble(game.current_player)
-        self.assertEqual(game.current_player, 1)
-        game.pass_turn_scrabble(game.current_player)
-        self.assertEqual(game.current_player, 0)
+    def test_next_turn_when_player_is_last(self):
+        scrabble_game = ScrabbleGame(players_count=3)
+        scrabble_game.current_player = scrabble_game.players[2]
+        scrabble_game.next_turn()
+        self.assertEqual(scrabble_game.current_player.name, scrabble_game.players[0].name)
+        
+    def test_validate_word(self):
+        scrabble_game = ScrabbleGame(2)
+        word = "Facultad"
+        location = (7, 7)
+        orientation = "Horizontal"
+        self.assertEqual(scrabble_game.validate_word(word,location,orientation), True)
+        
+    def test_validate_word_false(self):
+        scrabble_game = ScrabbleGame(2)
+        word = "Kadabra"
+        location = (0,0)
+        orientation = "Horizontal"
+        self.assertEqual(scrabble_game.validate_word(word, location, orientation), False)
+    
+    def test_validate_word_invalid_word(self):
+        scrabble_game = ScrabbleGame(2)
+        word = "Imvalid"  # Una palabra que sabemos que no está en el diccionario
+        location = (7, 7)
+        orientation = "Horizontal"
+        
+        result = scrabble_game.validate_word(word, location, orientation)
+        
+        self.assertFalse(result)
 
-    def test_get_current_player(self):
-        player1 = Player()
-        player2 = Player()
+    def test_game_over_true(self):
         game = ScrabbleGame(players_count=2)
-        game.players = [player1, player2]
-        game.current_player = 0
-        current_player = game.get_current_player()
-        self.assertEqual(current_player, player1)
-        game.current_player = 1
-        current_player = game.get_current_player()
-        self.assertEqual(current_player, player2)
+        game.bag_tiles.tiles = []  # Vacía la bolsa de fichas
 
-    def test_is_game_over_with_tiles_in_bag(self):
+        is_game_over = game.game_over()
+
+        self.assertTrue(is_game_over)
+
+    def test_game_over_false(self):
         game = ScrabbleGame(players_count=2)
-        self.assertFalse(game.is_game_over())
+        game.bag_tiles.tiles = [Tile('A', 1)]  # Agrega una ficha a la bolsa
 
-    def test_is_game_over_with_empty_bag(self):
-        game = ScrabbleGame(players_count=2)
-        game.bag_tiles.tiles = []
-        self.assertTrue(game.is_game_over())
+        is_game_over = game.game_over()
 
-    def test_can_exchange_tiles_with_exchangeable_tiles(self):
-        player = Player()
-        player.tiles = [Tile('A', 1), Tile('B', 3), Tile('', 0)]
-        game = ScrabbleGame(players_count=2)
-        game.players = [player]
-        game.current_player = 0
-        self.assertTrue(game.can_exchange_tiles())
+        self.assertFalse(is_game_over)
 
-    def test_can_exchange_tiles_with_no_exchangeable_tiles(self):
-        player = Player()
-        player.tiles = [Tile('', 0)]
-        game = ScrabbleGame(players_count=2)
-        game.players = [player]
-        game.current_player = 0
-        self.assertFalse(game.can_exchange_tiles())
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
+
+
+
+    
+
+
+

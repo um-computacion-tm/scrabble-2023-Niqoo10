@@ -1,6 +1,6 @@
 from Game.scrabble import ScrabbleGame
 from Game.player import Player
-from Game.bagtile import BagTiles
+from Game.bagtiles import BagTiles
 
 def is_valid_number_of_players(int):
     return 1 <= int <= 4

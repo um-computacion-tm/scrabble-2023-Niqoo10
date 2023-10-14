@@ -7,7 +7,7 @@ project_root = os.path.dirname(os.path.abspath(__file__))
 # Agregar el directorio raíz a sys.path
 sys.path.insert(0, project_root)
 # Importar las clases de game sin problemas
-from Game.scrabble import ScrabbleGame
+from game.scrabble import ScrabbleGame 
 
 class Main:
     def __init__(self):
@@ -42,4 +42,3 @@ class Main:
 if __name__ == '__main__':
     main = Main()
     main.play()
-

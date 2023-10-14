@@ -1,200 +1,184 @@
+# test_board.py
 import unittest
 from Game.board import Board
-from Game.cell import Cell
 from Game.tile import Tile
+from Game.cell import Cell
 
 class TestBoard(unittest.TestCase):
     def test_init(self):
         board = Board()
-        self.assertEqual(len(board.grid),15,)
-        self.assertEqual(len(board.grid[0]),15,)
+        self.assertEqual(len(board.grid), 15)
+        self.assertEqual(len(board.grid[0]), 15)
 
-class TestCalculateWordValue(unittest.TestCase):
-    def test_simple(self):
-        cell1 = Cell(multiplier=1,multiplier_type=False)
-        cell1.add_letter(Tile('C', 1)) 
-        cell2 = Cell(multiplier=1,multiplier_type=False)
-        cell2.add_letter(Tile('A', 1))
-        cell3 = Cell(multiplier=1,multiplier_type=False)
-        cell3.add_letter(Tile('S', 2))
-        cell4 = Cell(multiplier=1,multiplier_type=False)
-        cell4.add_letter(Tile('A', 1))
+    def test_place_tile(self):
+        board = Board()
+        tile = Tile('A', 1)
+        self.assertTrue(board.place_tile(7, 7, tile))
+        self.assertFalse(board.place_tile(7, 7, tile))
 
-        word = [cell1, cell2, cell3, cell4]
-        value = Board().calculate_word_value(word)
-        self.assertEqual(value, 5)
+    def test_validate_word(self):
+        board = Board()
+        tile_a = Tile('A', 1)
+        tile_b = Tile('B', 2)
+        tile_c = Tile('C', 3)
 
-    def test_with_letter_multiplier(self):
-        cell1 = Cell(multiplier=1,multiplier_type=False)
-        cell1.add_letter(Tile('C', 1)) 
-        cell2 = Cell(multiplier=1,multiplier_type=False)
-        cell2.add_letter(Tile('A', 1))
-        cell3 = Cell(multiplier=2,multiplier_type=True)
-        cell3.add_letter(Tile('S', 2))
-        cell4 = Cell(multiplier=1,multiplier_type=False)
-        cell4.add_letter(Tile('A', 1))
+        board.place_tile(7, 7, tile_a)
+        board.place_tile(7, 8, tile_b)
+        board.place_tile(7, 9, tile_c)
 
-        word = [cell1, cell2, cell3, cell4]
-        value = Board().calculate_word_value(word)
-        self.assertEqual(value, 7)
-
-    def test_with_word_multiplier(self):
-        cell1 = Cell(multiplier=1,multiplier_type=False)
-        cell1.add_letter(Tile('C', 1)) 
-        cell2 = Cell(multiplier=1,multiplier_type=False)
-        cell2.add_letter(Tile('A', 1))
-        cell3 = Cell(multiplier=2,multiplier_type=False)
-        cell3.add_letter(Tile('S', 2))
-        cell4 = Cell(multiplier=1,multiplier_type=False)
-        cell4.add_letter(Tile('A', 1))
-
-        word = [cell1, cell2, cell3, cell4]
-        value = Board().calculate_word_value(word)
-        self.assertEqual(value, 10)
-
-    def test_with_letter_word_multiplier(self):
-        cell1 = Cell(multiplier=3,multiplier_type=True)
-        cell1.add_letter(Tile('C', 1)) 
-        cell2 = Cell(multiplier=1,multiplier_type=False)
-        cell2.add_letter(Tile('A', 1))
-        cell3 = Cell(multiplier=2,multiplier_type=False)
-        cell3.add_letter(Tile('S', 2))
-        cell4 = Cell(multiplier=1,multiplier_type=False)
-        cell4.add_letter(Tile('A', 1))
-
-        word = [cell1, cell2, cell3, cell4]
-        value = Board().calculate_word_value(word)
-        self.assertEqual(value, 14)
-
-    def test_with_letter_word_multiplier_no_active(self):
-        cell1 = Cell(multiplier=3,multiplier_type=True,active=False)
-        cell1.add_letter(Tile('C', 1)) 
-        cell2 = Cell(multiplier=1,multiplier_type=False,active=False)
-        cell2.add_letter(Tile('A', 1))
-        cell3 = Cell(multiplier=2,multiplier_type=True,active=False)
-        cell3.add_letter(Tile('S', 2))
-        cell4 = Cell(multiplier=1,multiplier_type=False,active=False)
-        cell4.add_letter(Tile('A', 1))
-
-        word = [cell1, cell2, cell3, cell4]
-        value = Board().calculate_word_value(word)
-        self.assertEqual(value, 5)
-    
-    def test_word_inside_board_H(self):
+        self.assertTrue(board.validate_word(7, 7, 'ABC', 'Horizontal'))
+        self.assertFalse(board.validate_word(7, 7, 'ACB', 'Horizontal'))
+        self.assertTrue(board.validate_word(7, 7, 'A', 'Vertical'))
+        self.assertFalse(board.validate_word(7, 7, 'AB', 'Vertical'))
+        
+    def test_word_inside_board(self):
         board = Board()
         word = "Facultad"
         location = (5, 4)
-        orientation = "H"
+        orientation = "Horizontal"
 
         word_is_valid = board.validate_word_inside_board(word, location, orientation)
-        self.assertTrue(word_is_valid)
+
+        assert word_is_valid == True
     
-    def test_word_inside_board_V(self):
+
+    def test_word_out_of_board(self):
         board = Board()
         word = "Facultad"
-        location = (5, 4)
-        orientation = "V"
+        location = (14, 4)
+        orientation = "Horizontal"
+
+        word_is_valid = board.validate_word_out_of_board(word, location, orientation)
+
+        assert word_is_valid == False
+
+    def test_word_inside_board_vertical(self):
+        board = Board()
+        word = "Facultad"
+        location = (4, 5)  # Ubicación dentro del tablero
+        orientation = "Vertical"
 
         word_is_valid = board.validate_word_inside_board(word, location, orientation)
+
         self.assertTrue(word_is_valid)
-
-    def test_word_out_of_board_H(self):
-        board = Board()
-        word = "Facultad"
-        location = (1, 14)
-        orientation = "H"
         
-        with self.assertRaises(ValueError):
-            board.validate_word_inside_board(word, location, orientation)
-
-    def test_word_out_of_board_V(self):
-        board = Board()
-        word = "Facultad"
-        location = (14, 1)
-        orientation = "V"
-        
-        with self.assertRaises(ValueError):
-            board.validate_word_inside_board(word, location, orientation)
 
     def test_board_is_empty(self):
         board = Board()
-        assert board.is_empty == True
-
+        self.assertEqual(board.is_empty(), True)
+        
     def test_board_is_not_empty(self):
         board = Board()
-        board.grid[7][7].add_letter(Tile('C', 1))
-        assert board.is_empty == False      
-
-    def test_place_word_empty_board_H_fine(self):
-        board = Board()
-        word = "Facultad"
-        location = (4, 7)
-        orientation = "H"
-
-        word_is_valid = board.validate_word_inside_board(word, location, orientation)
-        self.assertTrue(word_is_valid)
-
-    def test_place_word_empty_board_H_worng(self):
-        board = Board()
-        word = "Facultad"
-        location = (1, 14)
-        orientation = "H"
-
-        with self.assertRaises(ValueError):
-            board.validate_word_inside_board(word, location, orientation)
-
-    def test_place_word_empty_board_V_fine(self):
+        board.grid[7][7] = Tile('C', 1)
+        self.assertEqual(board.is_empty(), False)
+    
+    def test_place_word_empty_board_horizontal_fine(self):
         board = Board()
         word = "Facultad"
         location = (7, 4)
-        orientation = "V"
+        orientation = "Horizontal"
 
-        word_is_valid = board.validate_word_inside_board(word, location, orientation)
-        self.assertTrue(word_is_valid)
-
-    def test_place_word_empty_board_V_wrong(self):
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        assert word_is_valid == True
+        
+    def test_place_word_empty_board_vertical_fine(self):
         board = Board()
-        word = "Facultad"
-        location = (14, 1)
-        orientation = "V"
-
-        with self.assertRaises(ValueError):
-            board.validate_word_inside_board(word, location, orientation)
-
-    def test_place_word_not_empty_board_H_fine(self):
-        board = Board()
-        board.grid[7][7].add_letter(Tile("C", 1))
-        board.grid[8][7].add_letter(Tile("A", 1))
-        board.grid[9][7].add_letter(Tile("S", 1))
-        board.grid[10][7].add_letter(Tile("A", 1))
         word = "Facultad"
         location = (4, 7)
-        orientation = "H"
+        orientation = "Vertical"
 
-        word_is_valid = board.validate_word_inside_board(word, location, orientation)
-        self.assertTrue(word_is_valid)
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        assert word_is_valid == True
+        
+    def test_place_word_empty_board_horizontal_wrong(self):
+        board = Board()
+        word = "Facultad"
+        location = (2, 4)
+        orientation = "Horizontal"
+
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        assert word_is_valid == False
+         
+    def test_place_word_empty_board_vertical_wrong(self):
+        board = Board()
+        word = "Facultad"
+        location = (4, 2)
+        orientation = "Vertical"
+
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        assert word_is_valid == False
     
-    def test_put_word_horizontal(self):
+    def test_place_word_no_empty_board_horizontal_fine(self):
         board = Board()
-        word = [Tile('H', 4), Tile('E', 1), Tile('L', 1), Tile('L', 1), Tile('O', 1)]
-        location = (7, 7)
-        orientation = 'H'
+        board.grid[7][7].add_letter(Tile('C',1))
+        board.grid[8][7].add_letter(Tile('A',1))
+        board.grid[9][7].add_letter(Tile('S',1))
+        board.grid[10][7].add_letter(Tile('A',1))
+        word = "Hola"
+        location = (8, 4)
+        orientation = "Horizontal"
 
-        board.put_word(word, location, orientation)
-
-        for i, letter in enumerate(word):
-            self.assertEqual(board.grid[7][7 + i].letter, letter)
-
-    def test_put_word_vertical(self):
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        assert word_is_valid == True
+    
+    def test_place_word_no_empty_board_vertical_fine(self):
         board = Board()
-        word = [Tile('V', 4), Tile('E', 1), Tile('R', 1), Tile('T', 1), Tile('I', 1), Tile('C', 3), Tile('A', 1), Tile('L', 1)]
-        location = (7, 7)
-        orientation = 'V'
+        board.grid[7][7].add_letter(Tile('C',1))
+        board.grid[7][8].add_letter(Tile('A',1))
+        board.grid[7][9].add_letter(Tile('S',1))
+        board.grid[7][10].add_letter(Tile('A',1))
+        word = "Hola"
+        location = (4, 8)
+        orientation = "Vertical"
 
-        board.put_word(word, location, orientation)
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        assert word_is_valid == True
+        
+    def test_place_word_no_empty_board_horizontal_wrong(self):
+        board = Board()
+        board.grid[7][7].add_letter(Tile('C',1))
+        board.grid[8][7].add_letter(Tile('A',1))
+        board.grid[9][7].add_letter(Tile('S',1))
+        board.grid[10][7].add_letter(Tile('A',1))
+        word = "Hola"
+        location = (8, 3)
+        orientation = "Horizontal"
 
-        for i, letter in enumerate(word):
-            self.assertEqual(board.grid[7 + i][7].letter, letter)
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        assert word_is_valid == False
+    
+    def test_place_word_no_empty_board_vertical_wrong(self):
+        board = Board()
+        board.grid[7][7].add_letter(Tile('C',1))
+        board.grid[7][8].add_letter(Tile('A',1))
+        board.grid[7][9].add_letter(Tile('S',1))
+        board.grid[7][10].add_letter(Tile('A',1))
+        word = "Hola"
+        location = (3, 8)
+        orientation = "Vertical"
 
-if __name__ == '__main__':
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        assert word_is_valid == False
+
+    # Tets de Agregar Función para Limpiar una Celda
+    def test_clear_cell_valid(self):
+        board = Board()
+        tile = Tile('A', 1)
+
+        # Colocamos una ficha en una celda
+        board.place_tile(7, 7, tile)
+        # Luego la limpiamos
+        board.clear_cell(7, 7)
+        # Comprobamos que la celda esté vacía
+        self.assertIsNone(board.grid[7][7].letter)
+
+    def test_clear_cell_invalid(self):
+        board = Board()
+
+        # Intentamos limpiar una celda fuera de los límites
+        result = board.clear_cell(16, 16)
+        # Debería devolver False ya que la celda está fuera de los límites
+        self.assertFalse(result)
+    
+if __name__ == "__main__":
     unittest.main()
