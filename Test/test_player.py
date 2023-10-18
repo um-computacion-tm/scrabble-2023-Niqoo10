@@ -3,7 +3,6 @@ from unittest.mock import Mock, patch
 from Game.player import Player
 from Game.bagtiles import BagTiles
 from Game.tile import Tile
-from Game.bagtiles import BagTiles
 from Game.board import Board
 from Game.cell import Cell
 
