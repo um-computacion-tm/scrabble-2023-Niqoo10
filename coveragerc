@@ -1,8 +1,8 @@
 [run]
 source =
-    /Game/game.py
-    /Test/test_models.py
-    /main.py
+    Game
+    Test
+    main
 omit =
     env/*
     */test*
