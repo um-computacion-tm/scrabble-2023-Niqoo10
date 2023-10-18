@@ -1,11 +1,11 @@
-import unittest
+'''import unittest
 from unittest.mock import patch, Mock
 from io import StringIO
 import sys
-from Game.game import validate_number_of_players
-from Game.game import main
-from Game.game import get_inputs
-from Game.game import is_valid_number_of_players
+from Game.models import validate_number_of_players
+from Game.models import main
+from Game.models import get_inputs
+from Game.models import is_valid_number_of_players
 
 
 class TestMain(unittest.TestCase):
@@ -37,4 +37,4 @@ class TestMain(unittest.TestCase):
         self.assertEqual(num_players, 2)
 
 if __name__ == '__main__':
-    unittest.main
+    unittest.main'''

@@ -1,27 +1,46 @@
+# scrabble.py
 from Game.board import Board
 from Game.player import Player
-from Game.bagtile import BagTiles
-from Game.tile import Tile
+from Game.bagtiles import BagTiles
+from Game.dictionary import Dictionary  
 
 class ScrabbleGame:
     def __init__(self, players_count):
         self.board = Board()
         self.bag_tiles = BagTiles()
-        self.players = []
-        self.current_player = 0
-        for _ in range(players_count):
-            self.players.append(Player())
-
-    def start_game(self):
-        for player in self.players:
-            tilesToDraw = 7 - len(player.tiles)
-            newTiles = self.bag_tiles.take(tilesToDraw)
-            player.tiles.extend(newTiles)
-
+        self.current_turn = 0
+        self.current_player = None
+        self.players: list[Player] = []
+        self.dict = Dictionary()
+        self.turn = 0
+        # Crear instancias de Player con nombres
+        for i in range(players_count):
+            player_name = f"Player {i+1}"
+            self.players.append(Player(name=player_name, bag_tiles=self.bag_tiles))
+    
+    def playing(self):
+        return True
+    
     def next_turn(self):
-        self.current_player += 1
-        if self.current_player >= len(self.players):
-            self.current_player = 0
+        if self.current_player is None:
+            self.current_player = self.players[0]
+        elif self.current_player == self.players[-1]:
+            self.current_player = self.players[0]
+        else:
+            player_turn = self.players.index(self.current_player) + 1
+            self.current_player = self.players[player_turn]
+        self.turn += 1
 
-if __name__ == '__main__':
-    pass
+    def validate_word(self, word, location, orientation):
+        if self.dict.verify_word(word) is True:
+            return self.board.validate_word_place_board(word, location, orientation)
+        else:
+            return False
+
+    def game_over(self):
+        if len(self.bag_tiles.tiles) == 0:
+            return True
+        return False
+    
+    def get_board(self):
+        return self.board
