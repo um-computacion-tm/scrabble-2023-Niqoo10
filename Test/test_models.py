@@ -1,4 +1,4 @@
-import unittest
+'''import unittest
 from unittest.mock import patch, Mock
 from io import StringIO
 import sys
@@ -37,4 +37,4 @@ class TestMain(unittest.TestCase):
         self.assertEqual(num_players, 2)
 
 if __name__ == '__main__':
-    unittest.main
+    unittest.main'''

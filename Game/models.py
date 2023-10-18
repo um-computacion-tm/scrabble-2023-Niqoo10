@@ -27,7 +27,7 @@ def main():
 
     players = validate_number_of_players()
     scrabble_game = ScrabbleGame(players)
-    scrabble_game.start_game
+    scrabble_game.start_game()
 
 if __name__ == '__main__':
     main()

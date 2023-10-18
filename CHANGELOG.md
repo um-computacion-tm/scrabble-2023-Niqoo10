@@ -3,11 +3,24 @@
 ## [Unreleased]
 - None.
 
+## [1.1.7] - 2023-10-17
+### Cambios Agregados
+
+- Change models.py.
+- Change test_models.py.
+- Add changes.
+
+## [1.1.7] - 2023-10-16
+### Cambios Agregados
+
+- Add test.sh.
+- Change code.
+
 ## [1.1.7] - 2023-10-14
 ### Cambios Agregados
 
 - Code changes.
-- Add config
+- Add config.
 
 ## [1.1.6] - 2023-10-10
 ### Cambios Agregados
