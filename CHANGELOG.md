@@ -3,7 +3,6 @@
 ## [Unreleased]
 - None.
 
-<<<<<<< HEAD
 ## [1.0.6] - 2023-09-26
 ### Cambios Agregados
 
