@@ -1,4 +1,4 @@
-from Game.scrabble import ScrabbleGame
+'''from Game.scrabble import ScrabbleGame
 from Game.player import Player
 from Game.bagtiles import BagTiles
 
@@ -30,4 +30,4 @@ def main():
     scrabble_game.start_game()
 
 if __name__ == '__main__':
-    main()
+    main()'''
