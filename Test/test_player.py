@@ -3,9 +3,7 @@ from unittest.mock import Mock, patch
 from Game.player import Player
 from Game.bagtiles import BagTiles
 from Game.tile import Tile
-<<<<<<< HEAD
-from Game.bagtile import BagTiles
-=======
+from Game.bagtiles import BagTiles
 from Game.board import Board
 from Game.cell import Cell
 
@@ -24,7 +22,6 @@ class MockCell:
 
     def calculate_value(self):
         return self.letter.value if self.letter is not None else 0
->>>>>>> develop
 
 class TestPlayer(unittest.TestCase):
     def test_init(self):
@@ -49,11 +46,9 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(len(player.rack), 3)
         self.assertEqual(len(bag1.tiles), 29)
 
-<<<<<<< HEAD
 
 if __name__ == '__main__':
     unittest.main()
-=======
     def test_view_tiles(self):
         player = Player(name='Player 1')
         player.tiles = [Tile('A', 1), Tile('B', 2), Tile('C', 3)]
@@ -149,4 +144,3 @@ class MockCell:
 
 if __name__ == "__main__":
     unittest.main()
->>>>>>> develop

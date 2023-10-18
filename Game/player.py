@@ -17,7 +17,6 @@ class Player:
             self.tiles.extend(bag.tiles[:num_tiles])
             del bag.tiles[:num_tiles]
 
-<<<<<<< HEAD
     def play_word(self, word):
         if not all(tile in self.tiles for tile in word):
             raise ValueError("El jugador no tiene las fichas necesarias.")
@@ -26,7 +25,7 @@ class Player:
                 self.tiles.remove(tile)
             return True
         
-=======
+
     def exchange_tiles(self,index,bag=BagTiles):
         tile_to_exchange = self.rack.pop(index)
         new_tile = bag.take(1)
@@ -35,7 +34,7 @@ class Player:
   
     def view_tiles(self):
         return self.tiles[:]
->>>>>>> develop
+
 
     def view_score(self):
         return self.score

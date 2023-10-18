@@ -1,38 +1,14 @@
+# board.py
 from Game.cell import Cell
 from Game.tile import Tile
 
 class Board:
     def __init__(self):
-<<<<<<< HEAD
-        self.grid = [[' ' for _ in range(15)] for _ in range(15)]
-
-    @property
-    def is_empty(self):
-        return all(all(cell == ' ' for cell in row) for row in self.grid)
-
-    def validate_word_place_board(self, word, location, orientation):
-        x, y = location
-        if orientation == 'H':
-            for letter in word:
-                if self.grid[x][y] != ' ':
-                    return False
-                x += 1
-        elif orientation == 'V':
-            for letter in word:
-                if self.grid[x][y] != ' ':
-                    return False
-                y += 1
-        else:
-            return False
-        return True
-
-=======
-        self.size = 15
+        self.size = 15  # Establece el tamaño del tablero
         self.grid = [
             [Cell(1, '') for _ in range(self.size)]
             for _ in range(self.size)
         ]
->>>>>>> develop
 
     def place_tile(self, location_x, location_y, tile):
         if 0 <= location_x < 15 and 0 <= location_y < 15:
@@ -56,19 +32,6 @@ class Board:
         return True
 
     def validate_word_inside_board(self, word, location, orientation):
-<<<<<<< HEAD
-        x , y = location
-        if orientation == 'H' and y + len(word) > 15:
-                raise ValueError("La palabra no cabe en el tablero en la posicion especificada.")
-        elif orientation == 'V' and x + len(word) > 15:
-                raise ValueError("La palabra no cabe en el tablero en la posicion especificada.")
-        return orientation in ('H', 'V')
-    
-
-    
-if __name__ == '__main__':
-    pass
-=======
         location_x, location_y = location
         word_length = len(word)
 
@@ -76,6 +39,8 @@ if __name__ == '__main__':
             return location_y + word_length <= 15
         elif orientation == "Vertical":
             return location_x + word_length <= 15
+        #else:
+         #   return InvalidWordPlacement(Exception)
 
     def validate_word_out_of_board(self, word, location, orientation):
         return not self.validate_word_inside_board(word, location, orientation)
@@ -137,4 +102,3 @@ if __name__ == '__main__':
             cell = self.grid[location_x][location_y]
             if cell.letter is not None:
                 cell.remove_letter()
->>>>>>> develop
