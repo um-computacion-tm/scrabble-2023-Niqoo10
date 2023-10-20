@@ -10,7 +10,7 @@ class Player:
         self.is_current_turn = False
         self.bag_tiles = bag_tiles
         self.rack = []
-        #self.played_words = []  # Lista para llevar un registro de las palabras jugadas
+        self.played_words = []  # Lista para llevar un registro de las palabras jugadas
         
     def draw_tiles(self, bag, num_tiles):
         if num_tiles <= len(bag.tiles):
@@ -24,10 +24,10 @@ class Player:
         self.rack.append(new_tile)
   
     def view_tiles(self):
-        return self.tiles[:]
+        return self.tiles()
 
     def view_score(self):
-        return self.score
+        return self.score()
 
     def start_turn(self):
         self.is_current_turn = True
@@ -51,9 +51,9 @@ class Player:
         return total_score
 
     def has_letters(self, tiles):
-        rack = set(tile.letter for tile in self.rack) #Creación de un cojunto de python
-        return set(tile.letter for tile in tiles).issubset(rack) #Se crea otro conjunto de python 
-        #issubset comprueba si el nuevo conjunto es un subconjunto de rack, si es así devuelve True
+        rack = set(tile.letter for tile in self.rack)
+        return set(tile.letter for tile in tiles).issubset(rack)
+        
         
     def set_tiles(self, tiles):
         self.tiles = tiles

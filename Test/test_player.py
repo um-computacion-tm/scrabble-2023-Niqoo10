@@ -8,9 +8,9 @@ from Game.cell import Cell
 
 class MockBoard:
     def __init__(self):
-        self.grid = [[MockCell() for _ in range(15)] for _ in range(15)]
+        self.grid = [[Cell() for _ in range(15)] for _ in range(15)]
 
-class MockCell:
+class Cell:
     def __init__(self):
         self.letter = None
         self.multiplier = 1
@@ -45,6 +45,9 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(len(player.rack), 3)
         self.assertEqual(len(bag1.tiles), 29)
 
+
+if __name__ == '__main__':
+    unittest.main()
     def test_view_tiles(self):
         player = Player(name='Player 1')
         player.tiles = [Tile('A', 1), Tile('B', 2), Tile('C', 3)]
