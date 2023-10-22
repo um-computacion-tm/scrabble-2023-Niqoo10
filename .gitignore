@@ -7,3 +7,4 @@ env
 env/*
 */env/*x
 __pycache__
+coverage.xml
