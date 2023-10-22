@@ -4,6 +4,8 @@ from Game.board import Board
 from Game.player import Player
 from Game.bagtiles import BagTiles
 from Game.dictionary import Dictionary
+import random
+import uuid
 
 
 class InvalidWordException(Exception):
