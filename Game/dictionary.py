@@ -1,8 +1,8 @@
 # dictionary.py 	
 
-'''class Dictionary:
+class Dictionary:
     def __init__(self):
-        with open('all_words_cleaned.txt', 'r', encoding='utf-8') as file:
+        with open('dictionary.txt', 'r', encoding='utf-8') as file:
             self.all_words = set(word.strip().lower() for word in file)
     def remove_accents(self, word):
         word = word.lower()
@@ -16,4 +16,4 @@
         for word in word_list:
             if not self.verify_word(word):
                 return False
-        return True'''
+        return True

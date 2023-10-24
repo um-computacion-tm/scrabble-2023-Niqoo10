@@ -1,6 +1,6 @@
 #main.py 
 
-'''from game.scrabble import Scrabble, InvalidWordException, InvalidWildCardConversion, InvalidRackException
+from Game.scrabble import Scrabble, InvalidWordException, InvalidWildCardConversion, InvalidRackException
 
 class Main:
     def __init__(self):
@@ -193,4 +193,4 @@ class Main:
 
 if __name__ == "__main__":
     main = Main()
-    main.play_game()'''
+    main.play_game()

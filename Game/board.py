@@ -1,8 +1,9 @@
 # board.py
 
-from game.cell import Cell
-from game.models import Miscellaneos, Converter, Tools
-from game.dictionary import Dictionary
+from Game.cell import Cell
+from Game.models import Miscellaneos, Converter
+from Game.tools import Tools
+from Game.dictionary import Dictionary
 
 class Board:
     def __init__(self):

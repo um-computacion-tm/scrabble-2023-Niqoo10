@@ -1,12 +1,12 @@
 # test_player.py
 
-'''import unittest
-from game.player import Player
-from game.tile import Tile
-from game.board import Board
-from game.cell import Cell
-from game.models import Miscellaneos
-from game.bagtiles import BagTiles
+import unittest
+from Game.player import Player
+from Game.tile import Tile
+from Game.board import Board
+from Game.cell import Cell
+from Game.models import Miscellaneos
+from Game.bagtiles import BagTiles
 
 class TestPlayer(unittest.TestCase):
     def test_player(self):
@@ -72,4 +72,4 @@ class TestPlayer(unittest.TestCase):
     def test_no_find_wildcard(self):
         player = Player()
         player.rack = [Tile('A', 1), Tile('B', 2)]
-        self.assertEqual(player.find_wildcard(), False)'''
+        self.assertEqual(player.find_wildcard(), False)

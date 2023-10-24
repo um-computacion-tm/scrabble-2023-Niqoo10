@@ -1,7 +1,7 @@
 #test_tile.py
 
 import unittest
-from game.tile import Tile
+from Game.tile import Tile
 
 class TestTiles(unittest.TestCase):
     def test_tile(self):

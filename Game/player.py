@@ -1,8 +1,8 @@
 # player.py
 
-from game.bagtiles import BagTiles
+from Game.bagtiles import BagTiles
 
-'''class Player:
+class Player:
     def __init__(self, id=0):
         self.rack = []
         self.score = 0
@@ -35,4 +35,3 @@ from game.bagtiles import BagTiles
             if tile.is_wildcard() is True:
                 return i
         return False
-'''

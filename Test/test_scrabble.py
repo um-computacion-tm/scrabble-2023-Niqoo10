@@ -1,12 +1,12 @@
 # test_scrabble.py
 
-'''import unittest
-from game.scrabble import Scrabble, InvalidWordException, InvalidRackException, InvalidWildCardConversion
-from game.player import Player
-from game.board import Board
-from game.cell import Cell
-from game.tile import Tile
-from game.models import Miscellaneos
+import unittest
+from Game.scrabble import Scrabble, InvalidWordException, InvalidRackException, InvalidWildCardConversion
+from Game.player import Player
+from Game.board import Board
+from Game.cell import Cell
+from Game.tile import Tile
+from Game.models import Miscellaneos
 
 class TestScrabble(unittest.TestCase):
     def test_scrabble(self):
@@ -267,4 +267,4 @@ class TestScrabble(unittest.TestCase):
         game.next_turn()
         self.assertEqual(game.get_current_player_id(), 1)
 if __name__ == '__main__':
-    unittest.main()'''
+    unittest.main()

@@ -1,7 +1,7 @@
 # cell.py
 
-from game.tile import Tile
-from game.models import Tools
+from Game.tile import Tile
+from Game.tools import Tools
 
 class Cell:
     def __init__(self, multiplier=1, multiplier_type='', letter=None, status='active'):

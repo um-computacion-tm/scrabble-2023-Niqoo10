@@ -1,7 +1,7 @@
 # test_dictionary.py
 
-'''import unittest
-from game.dictionary import Dictionary
+import unittest
+from Game.dictionary import Dictionary
 
 class TestDictionary(unittest.TestCase):
     def test_simple_verify(self):
@@ -48,4 +48,3 @@ class TestDictionary(unittest.TestCase):
         dic = Dictionary()
         word_list = ['Pato', 'Columna', 'Kalamacha']
         self.assertEqual(dic.verify_word_list(word_list), False)
-'''

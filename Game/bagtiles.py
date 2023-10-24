@@ -1,7 +1,7 @@
 # bagtiles.py
 
-import random
-from game.tile import Tile
+'''import random
+from Game.tile import Tile
 
 class BagTiles:
     # Constructor
@@ -99,11 +99,11 @@ class BagTiles:
             self.put(Tile(letter, self.get_value_for_letter(letter)), amount)
 
         random.shuffle(self.tiles)
-        return self.tiles
+        return self.tiles'''
 
 
-'''import random
-from game.tile import Tile
+import random
+from Game.tile import Tile
 
 class BagTiles:
     # Constructor
@@ -165,4 +165,4 @@ class BagTiles:
         self.tiles = []
         for letter, amount in initial_tiles.items():
             self.put(Tile(letter, self.get_value_for_letter(letter)), amount)
-        random.shuffle(self.tiles)'''
+        random.shuffle(self.tiles)

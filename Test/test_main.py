@@ -1,15 +1,15 @@
 #test_main.py
 
-'''from main import Main
-from game.tile import Tile
-from game.cell import Cell
+from main import Main
+from Game.tile import Tile
+from Game.cell import Cell
 import unittest
 from unittest.mock import patch
 from io import StringIO
 import io
 import sys
 from unittest.mock import call
-from game.scrabble import InvalidWordException, InvalidWildCardConversion, Scrabble
+from Game.scrabble import InvalidWordException, InvalidWildCardConversion, Scrabble
 
 class TestMain(unittest.TestCase):
     def setUp(self):
@@ -312,4 +312,4 @@ class TestMain(unittest.TestCase):
     @patch('builtins.print')
     @patch('builtins.input', side_effect=['2', 'A', '0'])
     def test_play_game(self, mock_input, mock_print, *args):
-        Main().play_game()'''
+        Main().play_game()

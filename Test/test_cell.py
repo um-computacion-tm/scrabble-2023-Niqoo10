@@ -1,9 +1,9 @@
 # test_cell.py
 
 import unittest
-from game.cell import Cell
-from game.tile import Tile
-from game.models import Tools
+from Game.cell import Cell
+from Game.tile import Tile
+from Game.models import Tools
 
 class TestCell(unittest.TestCase):
     def test_cell(self):
