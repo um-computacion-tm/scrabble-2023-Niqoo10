@@ -1,7 +1,7 @@
 #test_tile.py
 
 import unittest
-from Game.tile import Tile
+from game.tile import Tile
 
 class TestTiles(unittest.TestCase):
     def test_tile(self):
@@ -16,5 +16,3 @@ class TestTiles(unittest.TestCase):
         tile.convert_tile('B', 2)
         self.assertEqual(tile.letter, 'B')
         self.assertEqual(tile.value, 2)
-if __name__ == '__main__':
-    unittest.main()

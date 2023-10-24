@@ -1,107 +1,65 @@
-# board.py
+# models.py
 
-from Game.cell import Cell
-from Game.tile import Tile
+from game.bagtiles import BagTiles
+from game.cell import Cell
+import colorama
+from colorama import Fore, Style
+import copy
 
-class Board:
-    def __init__(self):
-        self.size = 15
-        self.grid = [
-            [Cell(1, '') for _ in range(self.size)]
-            for _ in range(self.size)
-        ]
-
-    def place_tile(self, location_x, location_y, tile):
-        if 0 <= location_x < 15 and 0 <= location_y < 15:
-            cell = self.grid[location_x][location_y]
-            if cell.letter is None:
-                cell.add_letter(tile)
-                return True
-        return False
+class Tools:
+    def move_pointer(self, orientation, row, column):
+        if orientation == "H":
+            column += 1
+        elif orientation == "V":
+            row += 1
+        return row, column
     
-    def validate_word(self, start_location_x, start_location_y, word, orientation):
-        for i, letter in enumerate(word):
-            if orientation == 'Horizontal':
-                location_x = start_location_x
-                location_y = start_location_y + i
-            elif orientation == 'Vertical':
-                location_x = start_location_x + i
-                location_y = start_location_y
+    def is_active_and_letter_multiplier(self,cell):
+        return cell.status == 'active' and cell.multiplier_type == 'letter'
 
-            if location_x >= 15 or location_y >= 15 or (self.grid[location_x][location_y].letter is None or self.grid[location_x][location_y].letter.letter != letter):
-                return False
-        return True
+    def is_active_and_word_multiplier(self,cell):
+        return cell.status == 'active' and cell.multiplier_type == 'word'
 
-    def validate_word_inside_board(self, word, location, orientation):
-        location_x, location_y = location
-        word_length = len(word)
+    def format_placed_word_cell(self, cell):
+        return f" {cell.letter.letter} "
 
-        if orientation == "Horizontal":
-            return location_y + word_length <= 15
-        elif orientation == "Vertical":
-            return location_x + word_length <= 15
+    def format_active_cell(self, cell):
+        if cell.status == 'active':
+            return self.format_cell_contents(cell)
 
-    def validate_word_out_of_board(self, word, location, orientation):
-        return not self.validate_word_inside_board(word, location, orientation)
-
-    def validate_word_horizontal(self, word, location, orientation):
-        location_x, location_y = location
-        word_length = len(word)
-        found_letter = False
-
-        for i in range(word_length):
-            actual_tile = self.grid[location_x][location_y + i].letter
-            if actual_tile is not None and actual_tile.letter.lower() == word[i]:
-                found_letter = True
-
-        return found_letter and self.validate_word_inside_board(word, location, orientation)
-
-    def validate_word_vertical(self, word, location, orientation):
-        location_x, location_y = location
-        word_length = len(word)
-        found_letter = False
-        for i in range(word_length):
-            actual_tile = self.grid[location_x + i][location_y].letter
-            if actual_tile is not None:
-                if actual_tile.letter.lower() == word[i]:
-                    found_letter = True
-        return found_letter and self.validate_word_inside_board(word, location, orientation)
-
-    def is_empty(self):
-        if self.grid[7][7].letter is None:
-            return True
+    def format_cell_contents(self, cell):
+        if cell.letter is None:
+            return self.format_multiplier(cell.multiplier, cell.multiplier_type)
         else:
-            return False
+            return self.format_placed_word_cell(cell)
 
-    def word_in_the_center(self, word, location, orientation):
-        location_x, location_y = location
-        is_horizontal = orientation == "Horizontal"
-        is_vertical = orientation == "Vertical"
-
-        if is_horizontal and location_x == 7:
-            return self.validate_word_inside_board(word, location, orientation)
-
-        if is_vertical and location_y == 7:
-            return self.validate_word_inside_board(word, location, orientation)
-
-        return False
-
-    def validate_word_place_board(self, word, location, orientation):
-        if self.is_empty() is True:
-            return self.word_in_the_center(word, location, orientation)
+    def format_multiplier(self, multiplier, multiplier_type):
+        if multiplier_type == 'word':
+            colors = {2: Fore.LIGHTMAGENTA_EX, 3: Fore.RED}
+        elif multiplier_type == 'letter':
+            colors = {2: Fore.CYAN, 3: Fore.BLUE}
         else:
-            if orientation == "Horizontal":
-                return self.validate_word_horizontal(word, location, orientation)
-            else:
-                return self.validate_word_vertical(word, location, orientation)
+            return " - "
 
-    # Agregar Función para Limpiar una Celda
-    def clear_cell(self, location_x, location_y):
-        if 0 <= location_x < 15 and 0 <= location_y < 15:
-            cell = self.grid[location_x][location_y]
-            if cell.letter is not None:
-                cell.remove_letter()
+        return f"{colors.get(multiplier, '')}{multiplier}{multiplier_type[0].upper()}{Style.RESET_ALL} "
+    
+    def filter_reapeted_column(self, list_tuples):
+        columns = {}
+        for row, column in list_tuples:
+            if column not in columns:
+                columns[column] = (row, column)
+        list_tuples = list(columns.values())
+        return list_tuples
+    
+    def filter_reapeted_row(self, list_tuples):
+        rows = {}
+        for row, column in list_tuples:
+            if row not in rows:
+                rows[row] = (row, column)
+        list_tuples = list(rows.values())
+        return list_tuples
 
+class Miscellaneos():    
     def calculate_word_value(self,word):
         tool = Tools()
         total_value = 0
@@ -272,3 +230,75 @@ class Board:
             new_word = [another_word, location[0], orientation_of_word[0]]
             list_of_words.append(new_word)
         return list_of_words
+    
+
+class Converter:
+    def string_to_tiles(self, input_string, list):
+        bag = BagTiles()
+        letter_set = set(tile.letter for tile in bag.tiles)
+        for letter in input_string.upper():
+            if letter in letter_set:
+                matching_tile = next(tile for tile in bag.tiles if tile.letter == letter)
+                #Next es una función para buscar elementos de un iterador (en esta caso: el conjunto)
+                list.append(matching_tile)
+
+
+    def especial_to_tiles(self, input_string, list):
+        bag = BagTiles()
+        for tile in bag.tiles:
+            if tile.letter == input_string.upper():
+                list.append(tile)
+                break
+
+    def word_to_tiles(self, word):
+        tiles_list = []
+        i = 0
+        while i < len(word):
+            two_letter_combo = word[i:i+2]
+            if two_letter_combo.upper() in ('CH', 'LL', 'RR'):
+                self.especial_to_tiles(two_letter_combo, tiles_list)
+                i += 2
+            else:
+                self.string_to_tiles(word[i], tiles_list)
+                i += 1
+        return tiles_list
+
+    def locations_to_positions(self, word, location, orientation):
+        tool = Tools()
+        positions = []
+        row = location[0]
+        column = location[1]
+        for _ in word:
+            positions.append((row, column))
+            row, column = tool.move_pointer(orientation, row, column)
+        return positions
+
+    def word_to_cells(self, word, location, orientation, board):
+        list_tiles = self.word_to_tiles(word)
+        two_letter_tile = 0
+        for tile in list_tiles:
+            if tile.letter in ['CH', 'RR', 'LL']:
+                two_letter_tile += 1
+        positions = self.locations_to_positions(word, location, orientation)
+        list_cell = []
+        for i in range(len(word) - two_letter_tile):
+            tile = list_tiles[i]
+            position = positions[i]
+            column, row = position
+            cell = copy.copy(board.grid[column][row])
+            cell.add_letter(tile)
+            list_cell.append(cell)
+        return list_cell
+    
+    def word_to_false_cells(self, word):
+        word_cells = []
+        word_tiles = self.word_to_tiles(word)
+        for tile in word_tiles:
+            word_cells.append(Cell(1, '', tile))
+        return word_cells
+    
+    def result_to_list_of_words(self, result):
+        words = []
+        for list in result:
+            words.append(list[0])
+        return words

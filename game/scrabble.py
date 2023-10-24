@@ -1,9 +1,10 @@
 # scrabble.py
 
-from Game.board import Board
-from Game.player import Player
-from Game.bagtiles import BagTiles
-from Game.dictionary import Dictionary
+'''from game.board import Board
+from game.player import Player
+from game.bagtiles import BagTiles
+from game.dictionary import Dictionary
+from game.models import Miscellaneos, Converter
 import random
 import uuid
 
@@ -137,4 +138,4 @@ class Scrabble:
             return None
     
     def get_current_player_id(self):
-        return self.current_player.id
+        return self.current_player.id'''
