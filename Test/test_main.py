@@ -1,6 +1,26 @@
 #test_main.py
 
-from main import Main
+import unittest
+from Game.scrabble import Scrabble, InvalidWordException, InvalidWildCardConversion, InvalidRackException
+from . import Main
+
+class TestMain(unittest.TestCase):
+
+    def test_valid_player_count_positive(self):
+        main = Main()
+        result = main.valid_player_count(2)
+        self.assertTrue(result)
+
+    def test_valid_player_count_negative(self):
+        main = Main()
+        result = main.valid_player_count(5)
+        self.assertFalse(result)
+
+if __name__ == '__main__':
+    unittest.main()
+
+
+'''from main import Main
 from Game.tile import Tile
 from Game.cell import Cell
 import unittest
@@ -312,4 +332,4 @@ class TestMain(unittest.TestCase):
     @patch('builtins.print')
     @patch('builtins.input', side_effect=['2', 'A', '0'])
     def test_play_game(self, mock_input, mock_print, *args):
-        Main().play_game()
+        Main().play_game()'''

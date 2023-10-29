@@ -1,6 +1,6 @@
 # models.py
 
-from Game.bagtiles import BagTiles
+'''from Game.bagtiles import BagTiles
 from Game.cell import Cell
 from Game.tools import Tools
 import copy
@@ -247,4 +247,4 @@ class Converter:
         words = []
         for list in result:
             words.append(list[0])
-        return words
+        return words'''

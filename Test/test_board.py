@@ -1,6 +1,201 @@
 # test_board.py
 
 import unittest
+from Game.cell import Cell
+from Game.board import Board
+
+class TestBoard(unittest.TestCase):
+
+    def test_put_multipliers(self):
+        board = Board()
+        cell1 = board.put_multipliers("3W")
+        cell2 = board.put_multipliers("2L")
+        cell3 = board.put_multipliers(None)
+
+        self.assertEqual(cell1.multiplier, 3)
+        self.assertEqual(cell1.multiplier_type, "word")
+        self.assertEqual(cell2.multiplier, 2)
+        self.assertEqual(cell2.multiplier_type, "letter")
+        self.assertIsInstance(cell3, Cell)
+
+    def test_put_words_board(self):
+        board = Board()
+        board.put_words_board("WORD", (7, 7), "H")
+
+        self.assertEqual(board.grid[7][7].letter, "W")
+        self.assertEqual(board.grid[7][8].letter, "O")
+        self.assertEqual(board.grid[7][9].letter, "R")
+        self.assertEqual(board.grid[7][10].letter, "D")
+
+    def test_validate_word_inside_board(self):
+        board = Board()
+        result1 = board.validate_word_inside_board("WORD", (0, 0), "H")
+        result2 = board.validate_word_inside_board("LONGWORD", (0, 10), "H")
+        result3 = board.validate_word_inside_board("WORD", (0, 0), "V")
+        result4 = board.validate_word_inside_board("LONGWORD", (10, 0), "V")
+
+        self.assertTrue(result1)
+        self.assertFalse(result2)
+        self.assertTrue(result3)
+        self.assertFalse(result4)
+
+    def test_is_empty(self):
+        board = Board()
+        empty_result = board.is_empty()
+        board.grid[7][7].letter = "A"
+        non_empty_result = board.is_empty()
+
+        self.assertTrue(empty_result)
+        self.assertFalse(non_empty_result)
+
+    def test_word_in_the_center(self):
+        board = Board()
+        result1 = board.word_in_the_center("WORD", (7, 7), "H")
+        result2 = board.word_in_the_center("WORD", (7, 7), "V")
+        result3 = board.word_in_the_center("WORD", (0, 0), "H")
+        result4 = board.word_in_the_center("WORD", (0, 0), "V")
+
+        self.assertTrue(result1)
+        self.assertTrue(result2)
+        self.assertFalse(result3)
+        self.assertFalse(result4)
+
+    def test_check_right_letters(self):
+        board = Board()
+        tile1 = Cell(letter="W")
+        tile2 = Cell(letter="O")
+        tile3 = Cell(letter="R")
+        letter1 = "W"
+        letter2 = "O"
+        letter3 = "R"
+        found_problem = []
+        found_coincidences = []
+
+        board.check_right_letters(tile1, letter1, [found_problem, found_coincidences])
+        board.check_right_letters(tile2, letter2, [found_problem, found_coincidences])
+        board.check_right_letters(tile3, letter3, [found_problem, found_coincidences])
+
+        self.assertEqual(found_coincidences, ["W", "O", "R"])
+        self.assertEqual(found_problem, [])
+
+    def test_check_conditions(self):
+        board = Board()
+        result1 = board.check_conditions([[], []])
+        result2 = board.check_conditions([[], ["A"]])
+        result3 = board.check_conditions([[], []])
+
+        self.assertTrue(result1)
+        self.assertFalse(result2)
+        self.assertTrue(result3)
+
+    def test_validate_word_horizontal(self):
+        board = Board()
+        board.grid[7][7].letter = "W"
+        board.grid[7][8].letter = "O"
+        board.grid[7][9].letter = "R"
+        board.grid[7][10].letter = "D"
+        result1 = board.validate_word_horizontal("WORD", (7, 7))
+        result2 = board.validate_word_horizontal("LONGWORD", (7, 7))
+        result3 = board.validate_word_horizontal("WORD", (0, 0))
+
+        self.assertTrue(result1)
+        self.assertFalse(result2)
+        self.assertTrue(result3)
+
+    def test_validate_word_vertical(self):
+        board = Board()
+        board.grid[7][7].letter = "W"
+        board.grid[8][7].letter = "O"
+        board.grid[9][7].letter = "R"
+        board.grid[10][7].letter = "D"
+        result1 = board.validate_word_vertical("WORD", (7, 7))
+        result2 = board.validate_word_vertical("LONGWORD", (7, 7))
+        result3 = board.validate_word_vertical("WORD", (0, 0))
+
+        self.assertTrue(result1)
+        self.assertFalse(result2)
+        self.assertTrue(result3)
+
+    def test_validate_word_place_board(self):
+        board = Board()
+        result1 = board.validate_word_place_board("WORD", (7, 7), "H")
+        result2 = board.validate_word_place_board("LONGWORD", (7, 7), "H")
+        result3 = board.validate_word_place_board("WORD", (0, 0), "H")
+        result4 = board.validate_word_place_board("WORD", (7, 7), "V")
+        result5 = board.validate_word_place_board("LONGWORD", (7, 7), "V")
+        result6 = board.validate_word_place_board("WORD", (0, 0), "V")
+
+        self.assertTrue(result1)
+        self.assertFalse(result2)
+        self.assertTrue(result3)
+        self.assertTrue(result4)
+        self.assertFalse(result5)
+        self.assertTrue(result6)
+
+    def test_get_cell_around_word(self):
+        board = Board()
+        word = "WORD"
+        location = (7, 7)
+        orientation = "H"
+        adjacent_cells = []
+        expected_result = [
+            board.grid[6][7],  # Cell above the word
+            board.grid[8][7]   # Cell below the word
+        ]
+
+        board.get_cell_around_word(word, location, orientation, adjacent_cells)
+
+        self.assertEqual(adjacent_cells, expected_result)
+
+    def test_get_tiles_around_word(self):
+        board = Board()
+        orientation = "H"
+        adjacent_tiles = [
+            Cell(letter="A"),
+            Cell(letter="B"),
+            Cell(letter="C")
+        ]
+        expected_result = [
+            Cell(letter="A"),
+            Cell(letter="B"),
+            Cell(letter="C")
+        ]
+
+        result = board.get_tiles_around_word(orientation, adjacent_tiles, board)
+
+        self.assertEqual(result, expected_result)
+
+    def test_get_validation_of_another_board(self):
+        board = Board()
+        word_in_validation = ("WORD", (7, 7), "H")
+        other_words = [
+            ("HELLO", (7, 6), "H"),
+            ("WORLD", (7, 8), "H")
+        ]
+        expected_result = "HELLO"
+
+        result = board.get_validation_of_another_board(word_in_validation, other_words)
+
+        self.assertEqual(result, expected_result)
+
+    def test_validate_words_around(self):
+        board = Board()
+        word = "WORD"
+        location = (7, 7)
+        orientation = "H"
+        residual_words = []
+        expected_result = True
+
+        result = board.validate_words_around(word, location, orientation, residual_words)
+
+        self.assertEqual(result, expected_result)
+        self.assertIn("HELLO", residual_words)
+        self.assertNotIn("WORLD", residual_words)
+
+if __name__ == '__main__':
+    unittest.main()
+
+'''import unittest
 from Game.board import Board
 from Game.cell import Cell
 from Game.tile import Tile
@@ -278,4 +473,4 @@ class TestBoard(unittest.TestCase):
         self.assertTrue(self.board.validate_words_around('nacion', (7,10), 'V'))
     
     def test_validate_words_around_false_in_empty(self):
-        self.assertEqual(self.board.validate_words_around('nacion', (0,0), 'H'), False)
+        self.assertEqual(self.board.validate_words_around('nacion', (0,0), 'H'), False)'''

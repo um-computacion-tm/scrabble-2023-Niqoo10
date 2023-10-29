@@ -1,6 +1,118 @@
 # test_scrabble.py
 
 import unittest
+from Game.board import Board
+from Game.player import Player
+from Game.bagtiles import BagTiles
+from Game.miscellaneos import Miscellaneos
+from Game.dictionary import Dictionary
+from Game.converter import Converter
+from Game.scrabble import Scrabble
+from Game.tile import Tile
+
+class TestScrabble(unittest.TestCase):
+
+    def setUp(self):
+        self.scrabble = Scrabble(2)
+        self.scrabble.current_player = Player(id=1)
+        self.scrabble.board = Board()
+        self.scrabble.bagtiles = BagTiles()
+        self.scrabble.dict = Dictionary()
+
+    def test_validate_word_valid_word(self):
+        result = self.scrabble.validate_word("HELLO", (0, 0), "H")
+        self.assertTrue(result)
+
+    def test_validate_word_invalid_word(self):
+        with self.assertRaises(InvalidWordException):
+            self.scrabble.validate_word("INVALID", (0, 0), "H")
+
+    def test_validate_word_invalid_location(self):
+        with self.assertRaises(InvalidWordException):
+            self.scrabble.validate_word("HELLO", (15, 15), "H")
+
+    def test_validate_word_invalid_orientation(self):
+        with self.assertRaises(InvalidWordException):
+            self.scrabble.validate_word("HELLO", (0, 0), "X")
+
+    def test_calculate_score(self):
+        self.scrabble.current_player.score = 0
+        self.scrabble.calculate_score("HELLO", (0, 0), "H")
+        self.assertEqual(self.scrabble.current_player.score, 8)
+
+    def test_get_board(self):
+        result = self.scrabble.get_board()
+        self.assertIsInstance(result, Board)
+
+    def test_put_word(self):
+        self.scrabble.put_word("HELLO", (0, 0), "H")
+        self.assertEqual(self.scrabble.board.get_cell((0, 0)).letter, "H")
+
+    def test_show_amount_tiles_bag(self):
+        result = self.scrabble.show_amount_tiles_bag()
+        self.assertIsInstance(result, int)
+
+    def test_shuffle_rack(self):
+        self.scrabble.current_player.rack = ["A", "B", "C", "D", "E", "F", "G"]
+        self.scrabble.shuffle_rack()
+        self.assertNotEqual(self.scrabble.current_player.rack, ["A", "B", "C", "D", "E", "F", "G"])
+
+    def test_game_over(self):
+        self.assertFalse(self.scrabble.game_over())
+
+    def test_put_tiles_in_rack(self):
+        self.scrabble.current_player.rack = []
+        self.scrabble.put_tiles_in_rack(7)
+        self.assertEqual(len(self.scrabble.current_player.rack), 7)
+
+    def test_descount_tiles_to_player(self):
+        self.scrabble.current_player.rack = ["H", "E", "L", "O"]
+        self.scrabble.descount_tiles_to_player("HELLO", (0, 0), "H")
+        self.assertEqual(len(self.scrabble.current_player.rack), 0)
+
+    def test_put_initial_tiles_bag(self):
+        self.scrabble.bagtiles.tiles = []
+        self.scrabble.put_initial_tiles_bag()
+        self.assertNotEqual(len(self.scrabble.bagtiles.tiles), 0)
+
+    def test_convert_wild_card_valid_conversion(self):
+        self.scrabble.current_player.rack = ["H", "E", "L", "O", "W"]
+        self.scrabble.convert_wild_card("X")
+        self.assertEqual(self.scrabble.current_player.rack[-1].letter, "X")
+
+    def test_convert_wild_card_invalid_conversion(self):
+        self.scrabble.current_player.rack = ["H", "E", "L", "O"]
+        with self.assertRaises(InvalidWildCardConversion):
+            self.scrabble.convert_wild_card("X")
+
+    def test_clean_word_to_use(self):
+        result = self.scrabble.clean_word_to_use("HÉLLÓ")
+        self.assertEqual(result, "HELLO")
+
+    def test_comprobate_is_an_int_valid_int(self):
+        result = self.scrabble.comprobate_is_an_int("10")
+        self.assertEqual(result, 10)
+
+    def test_comprobate_is_an_int_invalid_int(self):
+        result = self.scrabble.comprobate_is_an_int("10.5")
+        self.assertIsNone(result)
+
+    def test_comprobate_is_an_orientation_valid_orientation(self):
+        result = self.scrabble.comprobate_is_an_orientation("H")
+        self.assertEqual(result, "H")
+
+    def test_comprobate_is_an_orientation_invalid_orientation(self):
+        result = self.scrabble.comprobate_is_an_orientation("X")
+        self.assertIsNone(result)
+
+    def test_get_current_player_id(self):
+        result = self.scrabble.get_current_player_id()
+        self.assertEqual(result, 1)
+
+if __name__ == '__main__':
+    unittest.main()
+
+'''import unittest
 from Game.scrabble import Scrabble, InvalidWordException, InvalidRackException, InvalidWildCardConversion
 from Game.player import Player
 from Game.board import Board
@@ -267,4 +379,4 @@ class TestScrabble(unittest.TestCase):
         game.next_turn()
         self.assertEqual(game.get_current_player_id(), 1)
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main()'''
