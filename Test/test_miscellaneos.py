@@ -53,7 +53,7 @@ class TestMiscellaneos(unittest.TestCase):
     def test_get_cell_around_word_vertical(self):
         result = []
         self.miscellaneos.get_cell_around_word_vertical("HELLO", (7, 7), result)
-        self.assertEqual(result, [(6, 6), (6, 8), (7, 6), (7, 12), (8, 6), (8, 12), (8, 8), (8, 9), (8, 10), (8, 11)])
+        self.assertEqual(result, [(6, 7), (12, 7), (7, 6), (7, 8), (8, 6), (8, 8), (8, 9), (8, 10), (8, 11)])
 
     def test_verify_cell_around_word(self):
         board = Board()
