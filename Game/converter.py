@@ -1,3 +1,5 @@
+# converter.py
+
 from Game.bagtiles import BagTiles
 from Game.tools import Tools
 from Game.cell import Cell

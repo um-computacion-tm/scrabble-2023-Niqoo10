@@ -1,3 +1,5 @@
+# board.py
+
 from Game.cell import Cell
 from Game.models import Miscellaneos
 from Game.dictionary import Dictionary

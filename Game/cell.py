@@ -1,3 +1,5 @@
+# cell.py
+
 from Game.tile import Tile
 from Game.tools import Tools
 

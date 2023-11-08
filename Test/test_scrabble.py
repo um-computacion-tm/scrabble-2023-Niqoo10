@@ -129,25 +129,7 @@ class TestScrabble(unittest.TestCase):
         game = Scrabble(2)
         game.board.put_words_board('Ave', (7,7), 'H')
         self.assertTrue(game.validate_word('Narco', (7,6), 'V'))
-        ''' Something like this
-            '               ' # 0
-            '               ' # 1
-            '               ' # 2
-            '               ' # 3
-            '               ' # 4
-            '               ' # 5
-            '               ' # 6
-            '      NAVE     ' # 7
-            '      A        ' # 8
-            '      R        ' # 9
-            '      C        ' # 0
-            '      O        ' # 1
-            '               ' # 2
-            '               ' # 3
-            '               ' # 4
-            #012345678901234
-        '''
-    
+
     def test_put_word(self):
         game = Scrabble(2)
         word = "Hola"
