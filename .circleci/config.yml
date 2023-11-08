@@ -1,6 +1,8 @@
 version: 2.1
 jobs:
   build:
+    environment:
+      CC_TEST_REPORTER_ID: 7209f47ca780985ce3412af03ab0fc01d08c920ad9051c230fc0c3be841c883c
     docker:
       - image: cimg/python:3.10.1
     steps:
