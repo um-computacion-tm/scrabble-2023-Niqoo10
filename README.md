@@ -1,10 +1,10 @@
-<h1 align="center"> SCRABBLE GAME </h1>
+# <h1 align="center"> SCRABBLE GAME </h1>
 
 The game of Scrabble is a word game in which players form words on a board using letter tiles and score points based on the value of each letter. Here's an overview of how Scrabble is played:
 
 Objective: The objective of the Scrabble game is to earn more points than the other players by forming words on the board.
 
-<em> MATERIALS </em>
+ <em> MATERIALS </em>
 
     Game board with special squares.
     100 tokens with letters and their point values.
@@ -18,7 +18,7 @@ Objective: The objective of the Scrabble game is to earn more points than the ot
     Players choose 7 tiles at random and place them in their holders.
     The rest of the chips are placed in the bag.
 
-<em> GAME DEVELOPMENT </em>
+# <em> GAME DEVELOPMENT </em>
 
     Players take turns clockwise.
     On your turn, you can form words on the board using the tiles in your holder.
@@ -47,48 +47,46 @@ Objective: The objective of the Scrabble game is to earn more points than the ot
     8 points: J ×1, LL ×1, Ñ ×1, RR ×1, X ×1
     10 points: Z ×1
 
-<em> TIPS </em>
+ <em> TIPS </em>
 
     Plan your plays to maximize points.
     Learn valid words in Scrabble to take advantage of opportunities.
     Observe the special squares on the board and use them strategically.
 
 
-<h1 align="center"> HOW TO PLAY? </h1>
+# <h1 align="center"> HOW TO PLAY? </h1>
 
-1) Install docker
+    1) Install docker
 
-2) Clone the repository with the following command --> git clone https://github.com/um-computacion-tm/scrabble-2023-Niqoo10.git
+    2) Clone the repository with the following command --> git clone https://github.com/um-computacion-tm/scrabble-2023-Niqoo10.git
 
-3) Enter the folder "scrabble-2023-Niqoo10"
+    3) Enter the folder "scrabble-2023-Niqoo10"
 
-4) Type --> docker build -t [image_name] .
+    4) Type --> docker build -t [image_name] .
 
-5) Type --> docker run -it [image_name]
+    5) Type --> docker run -it [image_name]
 
-[Clarification, the name of the image is the name you want to give it and it must all be in lowercase]
+    [Clarification, the name of the image is the name you want to give it and it must all be in lowercase]
 
-6) Run the game in terminal with the following command and follow the instructions --> python3 main.py
+    6) Run the game in terminal with the following command and follow the instructions --> python3 main.py
 
 
-<em> MAIN </em>
+# MAIN 
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/um-computacion-tm/scrabble-2023-Niqoo10/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/um-computacion-tm/scrabble-2023-Niqoo10/tree/main)
 
-<em> DEVELOP </em>
+# DEVELOP 
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/um-computacion-tm/scrabble-2023-Niqoo10/tree/develop.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/um-computacion-tm/scrabble-2023-Niqoo10/tree/develop)
 
-<em> COVERAGE </em>
+# COVERAGE 
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d7306880564842fd6761/test_coverage)](https://codeclimate.com/github/um-computacion-tm/scrabble-2023-Niqoo10/test_coverage)
 
-<em> MAINTENABILITY </em>
+# MAINTENABILITY 
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/d7306880564842fd6761/maintainability)](https://codeclimate.com/github/um-computacion-tm/scrabble-2023-Niqoo10/maintainability)
 
-<em> STUDENT </em>
+#  STUDENT 
 
 Nicolás Panella (59080) 
-
-# ASD
