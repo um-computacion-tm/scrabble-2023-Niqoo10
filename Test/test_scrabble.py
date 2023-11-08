@@ -31,11 +31,11 @@ class TestScrabble(unittest.TestCase):
         game.next_turn()
         self.assertEqual(game.current_player, game.players[1])
 
-    '''def test_next_turn_when_game_is_last(self):
+    def test_next_turn_when_game_is_last(self):
         game = Scrabble(2)
         game.current_player = game.players[1]
         game.next_turn()
-        self.assertEqual(game.current_player, game.players[0])'''
+        self.assertEqual(game.current_player, game.players[0])
 
     def test_next_turn(self):
         game = Scrabble(2)
@@ -54,7 +54,7 @@ class TestScrabble(unittest.TestCase):
         orientation = "H"
         self.assertEqual(game.validate_word(word,location,orientation), True)
         
-    '''def test_calculate_score_simple(self):
+    def test_calculate_score_simple(self):
         game = Scrabble(2)
         word = "Facu"
         location = (4,0)
@@ -62,7 +62,7 @@ class TestScrabble(unittest.TestCase):
         game.next_turn()
         self.assertEqual(game.current_player.score, 0)
         game.calculate_score(word, location, orientation)
-        self.assertEqual(game.current_player.score, 8)'''
+        self.assertEqual(game.current_player.score, 8)
         
     def test_calculate_score_complex(self):
         game = Scrabble(2)

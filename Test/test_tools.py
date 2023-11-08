@@ -15,8 +15,7 @@ class TestTools(unittest.TestCase):
         tool = Tools()
         multiplier = 2
         multiplier_type = 'word'
-        expected_result = "\x1b[95m2W\x1b[0m "  # Es lightmagenta
-        #El \x1b[0m es para que las demas string sigan con el mismo color
+        expected_result = "\x1b[95m2W\x1b[0m "
         result = tool.format_multiplier(multiplier, multiplier_type)
         self.assertEqual(result, expected_result)
 
@@ -24,7 +23,7 @@ class TestTools(unittest.TestCase):
         tool = Tools()
         multiplier = 3
         multiplier_type = 'letter'
-        expected_result = "\x1b[34m3L\x1b[0m "  # Es azul
+        expected_result = "\x1b[34m3L\x1b[0m "
         result = tool.format_multiplier(multiplier, multiplier_type)
         self.assertEqual(result, expected_result)
 
