@@ -71,23 +71,23 @@ Objective: The objective of the Scrabble game is to earn more points than the ot
 6) Run the game in terminal with the following command and follow the instructions --> python3 main.py
 
 
-<h1 MAIN </h1>
+<em> MAIN </em>
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/um-computacion-tm/scrabble-2023-Niqoo10/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/um-computacion-tm/scrabble-2023-Niqoo10/tree/main)
 
-<h1 DEVELOP </h1>
+<em> DEVELOP </em>
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/um-computacion-tm/scrabble-2023-Niqoo10/tree/develop.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/um-computacion-tm/scrabble-2023-Niqoo10/tree/develop)
 
-<h1 COVERAGE </h1>
+<em> COVERAGE </em>
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d7306880564842fd6761/test_coverage)](https://codeclimate.com/github/um-computacion-tm/scrabble-2023-Niqoo10/test_coverage)
 
-<h1 MAINTENABILITY </h1>
+<em> MAINTENABILITY </em>
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/d7306880564842fd6761/maintainability)](https://codeclimate.com/github/um-computacion-tm/scrabble-2023-Niqoo10/maintainability)
 
-<h1 STUDENT </h1>
+<em> STUDENT </em>
 
 Nicolás Panella (59080) 
 
