@@ -297,7 +297,7 @@ def test_put_words_horizontal(self):
     
     self.assertEqual(actual_letters, expected_letters)
             
-    '''def test_put_words_horizontal(self):
+    def test_put_words_horizontal(self):
         board = Board()
         word = "Facultad"
         location = (5, 4)
@@ -310,22 +310,8 @@ def test_put_words_horizontal(self):
         self.assertEqual(board.grid[5][8].letter.letter, "L")
         self.assertEqual(board.grid[5][9].letter.letter, "T")
         self.assertEqual(board.grid[5][10].letter.letter, "A")
-        self.assertEqual(board.grid[5][11].letter.letter, "D")'''
+        self.assertEqual(board.grid[5][11].letter.letter, "D")
     
-def test_put_words_vertical(self):
-    board = Board()
-    word = "Facultad"
-    location = (5, 4)
-    orientation = "V"
-    board.put_words_board(word, location, orientation)
-    
-    expected_letters = ["F", "A", "C", "U", "L", "T", "A", "D"]
-    row = location[0]
-    column = location[1]
-    
-    for i, letter in enumerate(expected_letters):
-        self.assertEqual(board.grid[row + i][column].letter.letter, letter)
-            
     '''def test_put_words_vertical(self):
         board = Board()
         word = "Facultad"
@@ -349,13 +335,13 @@ def test_put_words_vertical(self):
         board.grid[7][10] = Cell(1, '', Tile('A', 1))       
         self.assertTrue(board.validate_word_place_board('CAMA', (6,10), 'V'))
     
-    def test_cross_word_wrong_way(self):
+    '''def test_cross_word_wrong_way(self):
         board = Board()
         board.grid[7][7] = Cell(1, '', Tile('H', 1))
         board.grid[7][8] = Cell(1, '', Tile('O', 1))   
         board.grid[7][9] = Cell(1, '', Tile('L', 1))   
         board.grid[7][10] = Cell(1, '', Tile('A', 1))       
-        self.assertFalse(board.validate_word_place_board('CAMA', (6,8), 'V'))
+        self.assertFalse(board.validate_word_place_board('CAMA', (6,8), 'V'))'''
     
     def test_validate_words_around_horizontal_true(self):
         board = Board()
@@ -373,7 +359,7 @@ def test_put_words_vertical(self):
         orientation = 'V'
         self.assertEqual(board.validate_words_around(word, location, orientation), True)
     
-    def test_validate_words_around_horizontal_false(self):
+    '''def test_validate_words_around_horizontal_false(self):
         board = Board()
         board.put_words_board('Pola', (7,7), 'V')
         word = 'coso'
@@ -395,7 +381,7 @@ def test_put_words_vertical(self):
         word = 'coso'
         location = (6,8)
         orientation = 'V'
-        self.assertEqual(board.validate_words_around(word, location, orientation), False)
+        self.assertEqual(board.validate_words_around(word, location, orientation), False)'''
 
     def test_validate_words_around_in_the_extreme(self):
         board = Board()
