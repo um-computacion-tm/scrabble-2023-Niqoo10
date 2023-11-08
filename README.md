@@ -18,7 +18,7 @@ Objective: The objective of the Scrabble game is to earn more points than the ot
     Players choose 7 tiles at random and place them in their holders.
     The rest of the chips are placed in the bag.
 
-# <em> GAME DEVELOPMENT </em>
+<em> GAME DEVELOPMENT </em>
 
     Players take turns clockwise.
     On your turn, you can form words on the board using the tiles in your holder.
