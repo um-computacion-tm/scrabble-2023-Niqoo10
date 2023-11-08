@@ -14,13 +14,20 @@ In total there are 100 tiles, 98 marked with letters and two blank (without dots
 <em> DISTRIBUTION OF LETTERS </em>
 
 2 wild cards (0 points)
+
 1 point: A ×12, E ×12, O ×9, I ×6, S ×6, N ×5, L ×4, R ×5, U ×5, T ×4
+
 2 points: D ×5, G ×2
+
 3 points: C ×4, B ×2, M ×2, P ×2
+
 4 points: H ×2, F ×1, V ×1, Y ×1
+
 5 points: CH ×1, Q ×1
+
 8 points: J ×1, LL ×1, Ñ ×1, RR ×1, X ×1
-10 points: Z ×1,
+
+10 points: Z ×1
 
 <h1 align="center"> HOW TO PLAY? </h1>
 
