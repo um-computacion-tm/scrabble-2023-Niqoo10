@@ -37,9 +37,9 @@ In total there are 100 tiles, 98 marked with letters and two blank (without dots
 
 3) Enter the folder "scrabble-2023-Niqoo10"
 
-4) Type --> docker build -t [image name] .
+4) Type --> docker build -t [image_name] .
 
-5) Type --> docker run -it [image name]
+5) Type --> docker run -it [image_name]
 
 [Clarification, the name of the image is the name you want to give it and it must all be in lowercase]
 
@@ -54,12 +54,11 @@ In total there are 100 tiles, 98 marked with letters and two blank (without dots
 
 <em> COVERAGE </em>
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/02fae121bbb60b8909fc/test_coverage)](https://codeclimate.com/github/um-computacion-tm/scrabble-2023-Niqoo10/test_coverage)
-
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d7306880564842fd6761/test_coverage)](https://codeclimate.com/github/um-computacion-tm/scrabble-2023-Niqoo10/test_coverage)
 
 <em> MAINTENABILITY </em>
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/02fae121bbb60b8909fc/maintainability)](https://codeclimate.com/github/um-computacion-tm/scrabble-2023-Niqoo10/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d7306880564842fd6761/maintainability)](https://codeclimate.com/github/um-computacion-tm/scrabble-2023-Niqoo10/maintainability)
 
 <em> STUDENT </em>
 
