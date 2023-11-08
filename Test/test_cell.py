@@ -1,3 +1,5 @@
+# # test_cell.py
+
 import unittest
 from Game.cell import Cell
 from Game.tile import Tile
@@ -64,5 +66,6 @@ class TestCell(unittest.TestCase):
         cell = Cell(2, "word", status="desactive")
         tool = Tools()
         self.assertEqual(repr(cell), tool.format_cell_contents(cell))
+
 if __name__ == '__main__':
     unittest.main()

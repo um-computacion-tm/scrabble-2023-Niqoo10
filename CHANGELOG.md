@@ -3,6 +3,20 @@
 ## [Unreleased]
 - None.
 
+## [1.1.8] 
+### Cambios Agregados
+
+- Add all scrabble implementation.
+
+### Cambios Modificados
+
+- Changes code and tdd.
+
+### Correcciones de ErroresS
+
+- Fixed the bugs.
+
+
 ## [1.1.7] 
 ### Cambios Agregados
 

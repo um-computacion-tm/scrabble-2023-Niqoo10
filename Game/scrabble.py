@@ -3,8 +3,9 @@
 from Game.board import Board
 from Game.player import Player
 from Game.bagtiles import BagTiles
+from Game.models import Miscellaneos
 from Game.dictionary import Dictionary
-from Game.models import Miscellaneos, Converter
+from Game.converter import Converter
 import random
 import uuid
 

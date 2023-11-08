@@ -27,19 +27,19 @@ class TestDictionary(unittest.TestCase):
     def test_verify_word_with_accents(self):
         dic = Dictionary()
         word = "Imaginación"
-        self.assertEqual(dic.verify_word(word), False)
+        self.assertEqual(dic.verify_word(word), True)
     def test_verify_word_without_accents(self):
         dic = Dictionary()
         word = "Imaginacion"
-        self.assertEqual(dic.verify_word(word), True)
+        self.assertEqual(dic.verify_word(word), False)
     def test_verify_word_with_dieresis(self):
         dic = Dictionary()
         word = "Pingüino"
-        self.assertEqual(dic.verify_word(word), False)
+        self.assertEqual(dic.verify_word(word), True)
     def test_verify_word_without_dieresis(self):
         dic = Dictionary()
         word = "Pinguino"
-        self.assertEqual(dic.verify_word(word), True)
+        self.assertEqual(dic.verify_word(word), False)
     def test_verify_word_list_True(self):
         dic = Dictionary()
         word_list = ['Pato', 'Columna', 'Televisor']

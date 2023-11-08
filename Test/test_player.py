@@ -1,53 +1,6 @@
 # test_player.py
 
 import unittest
-from Game.bagtiles import BagTiles
-from Game.player import Player
-from Game.tile import Tile
-
-class TestPlayer(unittest.TestCase):
-    def setUp(self):
-        self.player = Player()
-        self.bag = BagTiles()
-
-    def test_get_tiles(self):
-        self.player.get_tiles(7, self.bag)
-        self.assertEqual(len(self.player.rack), 7)  # Verificar que se agregaron las fichas al rack del jugador
-
-    def test_exchange_tiles(self):
-        self.player.get_tiles(7, self.bag)
-        initial_rack = self.player.rack[:]
-        self.player.exchange_tiles(1, self.bag)
-        self.assertNotEqual(self.player.rack, initial_rack)  # Verificar que se intercambió una ficha
-        self.assertEqual(len(self.player.rack), 7)  # Verificar que el tamaño del rack se mantiene constante
-
-    def test_has_letters(self):
-        tiles = [Tile('A'), Tile('B'), Tile('C')]
-        self.player.rack = [Tile('A'), Tile('B'), Tile('D')]
-        self.assertTrue(self.player.has_letters(tiles))  # Verificar que el jugador tiene las fichas necesarias
-
-        tiles = [Tile('A'), Tile('B'), Tile('C')]
-        self.player.rack = [Tile('A'), Tile('D'), Tile('E')]
-        self.assertFalse(self.player.has_letters(tiles))  # Verificar que el jugador no tiene las fichas necesarias
-
-    def test_has_wildcard(self):
-        self.player.rack = [Tile('A'), Tile('B'), Tile('C')]
-        self.assertFalse(self.player.has_wildcard())  # Verificar que el jugador no tiene fichas comodín
-
-        self.player.rack = [Tile('A'), Tile('B'), Tile('W')]
-        self.assertTrue(self.player.has_wildcard())  # Verificar que el jugador tiene una ficha comodín
-
-    def test_find_wildcard(self):
-        self.player.rack = [Tile('A'), Tile('B'), Tile('C')]
-        self.assertIsNone(self.player.find_wildcard())  # Verificar que no se encuentra una ficha comodín
-
-        self.player.rack = [Tile('A'), Tile('W'), Tile('C')]
-        self.assertEqual(self.player.find_wildcard(), 1)  # Verificar que se encuentra la ficha comodín en la posición 1
-
-if __name__ == '__main__':
-    unittest.main()
-
-'''import unittest
 from Game.player import Player
 from Game.tile import Tile
 from Game.board import Board
@@ -119,4 +72,4 @@ class TestPlayer(unittest.TestCase):
     def test_no_find_wildcard(self):
         player = Player()
         player.rack = [Tile('A', 1), Tile('B', 2)]
-        self.assertEqual(player.find_wildcard(), False)'''
+        self.assertEqual(player.find_wildcard(), False)

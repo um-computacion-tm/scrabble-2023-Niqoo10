@@ -1,3 +1,5 @@
+# test_board.py
+
 import unittest
 from Game.board import Board
 from Game.cell import Cell
@@ -332,24 +334,6 @@ class TestBoard(unittest.TestCase):
         location = (8,6)
         orientation = 'H'
         self.assertEqual(board.validate_words_around(word, location, orientation), True)
-        """ Something like that
-            '               ' # 0
-            '               ' # 1
-            '               ' # 2
-            '               ' # 3
-            '               ' # 4
-            '               ' # 5
-            '               ' # 6
-            '        H      ' # 7
-            '       COSO    ' # 8
-            '        L      ' # 9
-            '        A      ' # 0
-            '               ' # 1
-            '               ' # 2
-            '               ' # 3
-            '               ' # 4
-             #012345678901234
-        """
     
     def test_validate_words_around_vertical_true(self):
         board = Board()
@@ -358,24 +342,6 @@ class TestBoard(unittest.TestCase):
         location = (6,8)
         orientation = 'V'
         self.assertEqual(board.validate_words_around(word, location, orientation), True)
-        """ Something like that
-            '               ' # 0
-            '               ' # 1
-            '               ' # 2
-            '               ' # 3
-            '               ' # 4
-            '               ' # 5
-            '         C     ' # 6
-            '        HOLA   ' # 7
-            '         S     ' # 8
-            '         O     ' # 9
-            '               ' # 0
-            '               ' # 1
-            '               ' # 2
-            '               ' # 3
-            '               ' # 4
-             #012345678901234
-        """
     
     def test_validate_words_around_horizontal_false(self):
         board = Board()
@@ -384,24 +350,7 @@ class TestBoard(unittest.TestCase):
         location = (8,6)
         orientation = 'H'
         self.assertEqual(board.validate_words_around(word, location, orientation), False)
-        """ Something like that
-            '               ' # 0
-            '               ' # 1
-            '               ' # 2
-            '               ' # 3
-            '               ' # 4
-            '               ' # 5
-            '               ' # 6
-            '        P      ' # 7
-            '       COSO    ' # 8
-            '        L      ' # 9
-            '        A      ' # 0
-            '               ' # 1
-            '               ' # 2
-            '               ' # 3
-            '               ' # 4
-             #012345678901234
-        """
+
     def test_validate_words_around_vertical_false(self):
         board = Board()
         board.put_words_board('Pola', (7,7), 'H')
@@ -409,24 +358,6 @@ class TestBoard(unittest.TestCase):
         location = (6,8)
         orientation = 'V'
         self.assertEqual(board.validate_words_around(word, location, orientation), False)
-        """ Something like that
-            '               ' # 0
-            '               ' # 1
-            '               ' # 2
-            '               ' # 3
-            '               ' # 4
-            '               ' # 5
-            '         C     ' # 6
-            '        POLA   ' # 7
-            '         S     ' # 8
-            '         O     ' # 9
-            '               ' # 0
-            '               ' # 1
-            '               ' # 2
-            '               ' # 3
-            '               ' # 4
-             #012345678901234
-        """
 
     def test_validate_words_around_false(self):
         board = Board()
@@ -435,46 +366,12 @@ class TestBoard(unittest.TestCase):
         location = (6,8)
         orientation = 'V'
         self.assertEqual(board.validate_words_around(word, location, orientation), False)
-        """ Something like that
-            '               ' # 0
-            '               ' # 1
-            '               ' # 2
-            '               ' # 3
-            '               ' # 4
-            '               ' # 5
-            '         C     ' # 6
-            '        PO     ' # 7
-            '         S     ' # 8
-            '         O     ' # 9
-            '               ' # 0
-            '               ' # 1
-            '               ' # 2
-            '               ' # 3
-            '               ' # 4
-             #012345678901234
-        """
+
     def test_validate_words_around_in_the_extreme(self):
         board = Board()
         board.put_words_board('Ave', (7,7), 'H')
         self.assertTrue(board.validate_words_around('Narco', (7,6), 'V'))
-        """ Something like that
-            '               ' # 0
-            '               ' # 1
-            '               ' # 2
-            '               ' # 3
-            '               ' # 4
-            '               ' # 5
-            '               ' # 6
-            '        NAVE   ' # 7
-            '        A      ' # 8
-            '        R      ' # 9
-            '        C      ' # 0
-            '        O      ' # 1
-            '               ' # 2
-            '               ' # 3
-            '               ' # 4
-             #012345678901234
-        """
+
     def test_validate_words_around_create_another_words_complex(self):
         board = Board()
         board.put_words_board('abal', (7,11), 'H')

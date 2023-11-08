@@ -20,9 +20,8 @@ class Player:
         self.rack.insert(index, new_tile)
     
     def has_letters(self, tiles):
-        rack = set(tile.letter for tile in self.rack) #Creación de un cojunto de python
-        return set(tile.letter for tile in tiles).issubset(rack) #Se crea otro conjunto de python 
-        #issubset comprueba si el nuevo conjunto es un subconjunto de rack, si es así devuelve True
+        rack = set(tile.letter for tile in self.rack)
+        return set(tile.letter for tile in tiles).issubset(rack)
     
     def has_wildcard(self):
         for tile in self.rack:

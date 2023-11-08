@@ -1,89 +1,113 @@
+# test_converter.py
+
 import unittest
-from Game.bagtiles import BagTiles
-from Game.tools import Tools
-from Game.cell import Cell
 from Game.converter import Converter
+from Game.board import Board
 
-class ConverterTestCase(unittest.TestCase):
-    def setUp(self):
-        self.converter = Converter()
-        self.bag = BagTiles()
-        self.tools = Tools()
-
-    def test_string_to_tiles_positive(self):
-        tile_list = []
-        input_string = "HELLO"
-        expected_tiles = [self.bag.tiles[7], self.bag.tiles[4], self.bag.tiles[11], self.bag.tiles[11], self.bag.tiles[14]]
-        self.converter.string_to_tiles(input_string, tile_list)
-        self.assertEqual(tile_list, expected_tiles)
-
-    def test_string_to_tiles_negative(self):
-        tile_list = []
-        input_string = "WORLD"
-        unexpected_tiles = [self.bag.tiles[7], self.bag.tiles[4], self.bag.tiles[11], self.bag.tiles[11], self.bag.tiles[14]]
-        self.converter.string_to_tiles(input_string, tile_list)
-        self.assertNotEqual(tile_list, unexpected_tiles)
-
-    def test_especial_to_tiles_positive(self):
-        tile_list = []
-        input_string = "CH"
-        expected_tiles = [self.bag.tiles[26]]
-        self.converter.especial_to_tiles(input_string, tile_list)
-        self.assertEqual(tile_list, expected_tiles)
-
-    def test_especial_to_tiles_negative(self):
-        tile_list = []
-        input_string = "RR"
-        unexpected_tiles = [self.bag.tiles[26]]
-        self.converter.especial_to_tiles(input_string, tile_list)
-        self.assertNotEqual(tile_list, unexpected_tiles)
-
-    def test_word_to_tiles(self):
-        word = "HELLO"
-        expected_tiles = [self.bag.tiles[7], self.bag.tiles[4], self.bag.tiles[11], self.bag.tiles[11], self.bag.tiles[14]]
-        tiles_list = self.converter.word_to_tiles(word)
-        self.assertEqual(tiles_list, expected_tiles)
-
-    def test_locations_to_positions(self):
-        word = "HELLO"
-        location = (2, 3)
-        orientation = "horizontal"
-        expected_positions = [(2, 3), (2, 4), (2, 5), (2, 6), (2, 7)]
-        positions = self.converter.locations_to_positions(word, location, orientation)
-        self.assertEqual(positions, expected_positions)
-
+class TestConverter(unittest.TestCase):
+    def test_word_to_tiles_simple_hola(self):
+        conv = Converter()
+        list_tiles = conv.word_to_tiles("hola")
+        self.assertEqual(list_tiles[0].letter, "H")
+        self.assertEqual(list_tiles[0].value, 4)
+        self.assertEqual(list_tiles[1].letter, "O")
+        self.assertEqual(list_tiles[1].value, 1)
+        self.assertEqual(list_tiles[2].letter, "L")
+        self.assertEqual(list_tiles[2].value, 1)
+        self.assertEqual(list_tiles[3].letter, "A")
+        self.assertEqual(list_tiles[3].value, 1)
+    def test_word_to_tiles_simple_facultad(self):
+        conv = Converter()
+        list_tiles = conv.word_to_tiles("facultad")
+        self.assertEqual(list_tiles[0].letter, "F")
+        self.assertEqual(list_tiles[0].value, 4)
+        self.assertEqual(list_tiles[1].letter, "A")
+        self.assertEqual(list_tiles[1].value, 1)
+        self.assertEqual(list_tiles[2].letter, "C")
+        self.assertEqual(list_tiles[2].value, 2)
+        self.assertEqual(list_tiles[3].letter, "U")
+        self.assertEqual(list_tiles[3].value, 1)
+        self.assertEqual(list_tiles[4].letter, "L")
+        self.assertEqual(list_tiles[4].value, 1)
+        self.assertEqual(list_tiles[5].letter, "T")
+        self.assertEqual(list_tiles[5].value, 1)
+        self.assertEqual(list_tiles[6].letter, "A")
+        self.assertEqual(list_tiles[6].value, 1)
+        self.assertEqual(list_tiles[7].letter, "D")
+        self.assertEqual(list_tiles[7].value, 2)
+    def test_word_to_tiles_simple_casa(self):
+        conv = Converter()
+        list_tiles = conv.word_to_tiles("casa")
+        self.assertEqual(list_tiles[0].letter, "C")
+        self.assertEqual(list_tiles[0].value, 2)
+        self.assertEqual(list_tiles[1].letter, "A")
+        self.assertEqual(list_tiles[1].value, 1)
+        self.assertEqual(list_tiles[2].letter, "S")
+        self.assertEqual(list_tiles[2].value, 1)
+        self.assertEqual(list_tiles[3].letter, "A")
+        self.assertEqual(list_tiles[3].value, 1)
+    def test_word_to_tiles_complex_CH(self):
+        conv = Converter()
+        list_tiles = conv.word_to_tiles("chita")
+        self.assertEqual(list_tiles[0].letter, "CH")
+        self.assertEqual(list_tiles[0].value, 5)
+        self.assertEqual(list_tiles[1].letter, "I")
+        self.assertEqual(list_tiles[1].value, 1)
+        self.assertEqual(list_tiles[2].letter, "T")
+        self.assertEqual(list_tiles[2].value, 1)
+        self.assertEqual(list_tiles[3].letter, "A")
+        self.assertEqual(list_tiles[3].value, 1)
+    def test_word_to_tiles_complex_RR(self):
+        conv = Converter()
+        list_tiles = conv.word_to_tiles("perro")
+        self.assertEqual(list_tiles[0].letter, "P")
+        self.assertEqual(list_tiles[0].value, 2)
+        self.assertEqual(list_tiles[1].letter, "E")
+        self.assertEqual(list_tiles[1].value, 1)
+        self.assertEqual(list_tiles[2].letter, "RR")
+        self.assertEqual(list_tiles[2].value, 8)
+        self.assertEqual(list_tiles[3].letter, "O")
+        self.assertEqual(list_tiles[3].value, 1)
+    def test_word_to_tilescomplex_LL(self):
+        conv = Converter()
+        list_tiles = conv.word_to_tiles("llanto")
+        self.assertEqual(list_tiles[0].letter, "LL")
+        self.assertEqual(list_tiles[0].value, 8)
+        self.assertEqual(list_tiles[1].letter, "A")
+        self.assertEqual(list_tiles[1].value, 1)
+        self.assertEqual(list_tiles[2].letter, "N")
+        self.assertEqual(list_tiles[2].value, 1)
+        self.assertEqual(list_tiles[3].letter, "T")
+        self.assertEqual(list_tiles[3].value, 1)
+        self.assertEqual(list_tiles[4].letter, "O")
+        self.assertEqual(list_tiles[4].value, 1)
+    
     def test_word_to_cells(self):
-        word = "HELLO"
-        location = (2, 3)
-        orientation = "horizontal"
-        board = self.tools.create_empty_board()
-        expected_cells = [
-            Cell(1, 'H', self.bag.tiles[7]),
-            Cell(1, 'E', self.bag.tiles[4]),
-            Cell(1, 'L', self.bag.tiles[11]),
-            Cell(1, 'L', self.bag.tiles[11]),
-            Cell(1, 'O', self.bag.tiles[14])
-        ]
-        cells = self.converter.word_to_cells(word, location, orientation, board)
-        self.assertEqual(cells, expected_cells)
+        conv = Converter()
+        board = Board()
+        word = 'llanto'
+        location = (7,7)
+        orientation = 'H'
+        list_cell = conv.word_to_cells(word, location, orientation, board)
+        self.assertEqual(list_cell[0].letter.letter, 'LL')
+        self.assertEqual(list_cell[0].multiplier_type, 'word')
+        self.assertEqual(list_cell[1].letter.letter, 'A')
+        self.assertEqual(list_cell[2].letter.letter, 'N')
+        self.assertEqual(list_cell[3].letter.letter, 'T')
+        self.assertEqual(list_cell[4].letter.letter, 'O')
 
-    def test_word_to_false_cells(self):
-        word = "HELLO"
-        expected_false_cells = [
-            Cell(1, '', self.bag.tiles[7]),
-            Cell(1, '', self.bag.tiles[4]),
-            Cell(1, '', self.bag.tiles[11]),
-            Cell(1, '', self.bag.tiles[11]),
-            Cell(1, '', self.bag.tiles[14])
-        ]
-        false_cells = self.converter.word_to_false_cells(word)
-        self.assertEqual(false_cells, expected_false_cells)
+    def test_locations_to_positions_vertical(self):
+        conv = Converter()
+        word = "Facu"
+        location = (4, 7)
+        orientation = "V"
+        result = conv.locations_to_positions(word,location, orientation)
+        self.assertEqual(result, [(4,7), (5,7),(6,7),(7,7)])
 
-    def test_result_to_list_of_words(self):
-        result = [('HELLO', 10), ('WORLD', 15)]
-        expected_words = ['HELLO', 'WORLD']
-        words = self.converter.result_to_list_of_words(result)
-        self.assertEqual(words, expected_words)
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_locations_to_positions_horizontal(self):
+        conv = Converter()
+        word = "Facu"
+        location = (4, 7)
+        orientation = "H"
+        result = conv.locations_to_positions(word,location, orientation)
+        self.assertEqual(result, [(4,7), (4,8),(4,9),(4,10)])
