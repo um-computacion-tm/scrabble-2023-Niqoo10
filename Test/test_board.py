@@ -281,7 +281,23 @@ class TestBoard(unittest.TestCase):
         board.put_words_board("Hola", (2,8), "V")
         self.assertEqual(board.validate_word_place_board("Lacra", (3,9), "V"), False)
         
-    def test_put_words_horizontal(self):
+def test_put_words_horizontal(self):
+    board = Board()
+    word = "Facultad"
+    location = (5, 4)
+    orientation = "H"
+    
+    try:
+        board.put_words_board(word, location, orientation)
+    except Exception as e:
+        self.fail("Error al colocar la palabra en el tablero: " + str(e))
+    
+    expected_letters = ["F", "A", "C", "U", "L", "T", "A", "D"]
+    actual_letters = [board.grid[location[0]][location[1] + i].letter.letter for i in range(len(word))]
+    
+    self.assertEqual(actual_letters, expected_letters)
+            
+    '''def test_put_words_horizontal(self):
         board = Board()
         word = "Facultad"
         location = (5, 4)
@@ -294,9 +310,23 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(board.grid[5][8].letter.letter, "L")
         self.assertEqual(board.grid[5][9].letter.letter, "T")
         self.assertEqual(board.grid[5][10].letter.letter, "A")
-        self.assertEqual(board.grid[5][11].letter.letter, "D")
+        self.assertEqual(board.grid[5][11].letter.letter, "D")'''
     
-    def test_put_words_vertical(self):
+def test_put_words_vertical(self):
+    board = Board()
+    word = "Facultad"
+    location = (5, 4)
+    orientation = "V"
+    board.put_words_board(word, location, orientation)
+    
+    expected_letters = ["F", "A", "C", "U", "L", "T", "A", "D"]
+    row = location[0]
+    column = location[1]
+    
+    for i, letter in enumerate(expected_letters):
+        self.assertEqual(board.grid[row + i][column].letter.letter, letter)
+            
+    '''def test_put_words_vertical(self):
         board = Board()
         word = "Facultad"
         location = (5, 4)
@@ -309,7 +339,7 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(board.grid[9][4].letter.letter, "L")
         self.assertEqual(board.grid[10][4].letter.letter, "T")
         self.assertEqual(board.grid[11][4].letter.letter, "A")
-        self.assertEqual(board.grid[12][4].letter.letter, "D")    
+        self.assertEqual(board.grid[12][4].letter.letter, "D") '''   
 
     def test_cross_word_right_way(self):
         board = Board()
