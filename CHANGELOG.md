@@ -1,63 +1,49 @@
 # CHANGELOG
 
 ## [Unreleased]
-- None.
-
-## [1.0.6] - 2023-09-26
-### Cambios Agregados
-
-- Funcionality.
-- Codeclimate config.
-
-### Cambios Modificados
-- Improvement in the test.
-
-### Correcciones de Errores
-- Corrected syntax.
-- Fix.
-- Corected CircleCI
-
-
-## [1.0.6] - 2023-09-26
-### Cambios Agregados
 
 - None.
 
+## [1.1.9] 
+### Cambios Agregados
+
+- Add all scrabble implementation.
+
 ### Cambios Modificados
-- Improvement in the test.
 
-### Correcciones de Errores
-- Corrected syntax.
-- Fix.
+- Changes code and tdd.
 
-## [1.0.5] - 2023-08-03
-=======
-## [1.1.7] - 2023-10-17
+### Correcciones de ErroresS
+
+- Fixed the bugs.
+
+
+## [1.1.8] 
 ### Cambios Agregados
 
 - Change models.py.
 - Change test_models.py.
 - Add changes.
 
-## [1.1.7] - 2023-10-16
+## [1.1.7] 
 ### Cambios Agregados
 
 - Add test.sh.
 - Change code.
 
-## [1.1.7] - 2023-10-14
+## [1.1.7]
 ### Cambios Agregados
 
 - Code changes.
 - Add config.
 
-## [1.1.6] - 2023-10-10
+## [1.1.6] 
 ### Cambios Agregados
 
 - Add test_calculatevalue.py.
 - Change cell.py.
 
-## [1.1.5] - 2023-10-07
+## [1.1.5] 
 ### Cambios Agregados
 
 - Add main.py.
@@ -72,20 +58,20 @@
 
 - Corrected syntax.
 
-## [1.1.4] - 2023-10-06
+## [1.1.4] 
 ### Cambios Agregados
 
 - Add classes to main.py.
 - Add TDD test_main.py.
 
-## [1.1.3] - 2023-10-05
+## [1.1.3] 
 ### Cambios Agregados
 
 - Add main.py.
 - Add test_mian.py.
 
 
-## [1.1.2] - 2023-10-04
+## [1.1.2] 
 ### Cambios Agregados
 
 - Add dictionary.txt.
@@ -98,7 +84,7 @@
 
 - Fixed bug in dictionary cover.
 
-## [1.1.1] - 2023-10-03
+## [1.1.1] 
 ### Cambios Agregados
 
 - Add refactor the entire code.
@@ -111,7 +97,7 @@
 
 - Corrected syntax.
 
-## [1.1.0] - 2023-10-02
+## [1.1.0] 
 ### Cambios Agregados
 
 - Add refactor the entire code.
@@ -126,7 +112,7 @@
 - Corrected syntax.
 - Corrected dictionary.py and test_dictionary.py.
 
-## [1.0.9] - 2023-10-01
+## [1.0.9] 
 ### Cambios Agregados
 
 - Add dictionary.py.
@@ -140,7 +126,7 @@
 
 - Corrected syntax.
 
-## [1.0.8] - 2023-09-30
+## [1.0.8] 
 ### Cambios Agregados
 
 - New TDD cell.
@@ -153,10 +139,10 @@
 
 - Corrected syntax.
 
-## [1.0.7] - 2023-09-29
+## [1.0.7]
 ### Cambios Agregados
 
-- Corrected TDD (2023-09-28).
+- Corrected TDD.
 
 ### Cambios Modificados
 
@@ -166,7 +152,7 @@
 
 - Corrected syntax.
 
-## [1.0.6] - 2023-09-28
+## [1.0.6]
 ### Cambios Agregados
 
 - Add TDD.
@@ -179,7 +165,11 @@
 
 - Corrected syntax.
 
+<<<<<<< HEAD
 ## [1.0.5] - 2023-09-27
+>>>>>>> develop
+=======
+## [1.0.5] 
 >>>>>>> develop
 ### Cambios Agregados
 
@@ -193,7 +183,7 @@
 
 - Corrected syntax.
 
-## [1.0.4] - 2023-08-30
+## [1.0.4] 
 ### Cambios Agregados
 
 - Added bagtile.
@@ -207,7 +197,7 @@
 
 - Corrected syntax.
 
-## [1.0.3] - 2023-08-24
+## [1.0.3] 
 ### Cambios Agregados
 
 - Added player.
@@ -220,7 +210,7 @@
 
 - Corrected syntax.
 
-## [1.0.2] - 2023-08-22
+## [1.0.2]
 ### Cambios Agregados
 
 - Added board.
@@ -234,7 +224,7 @@
 
 - Corrected syntax.
 
-## [1.0.1] - 2023-08-22
+## [1.0.1] 
 ### Cambios Agregados
 
 - Added wildcard.
@@ -249,7 +239,7 @@
 
 - Corrected syntax.
 
-## [1.0.0] - 2023-08-18
+## [1.0.0]
 ### Cambios Agregados
 - Added base code.
 

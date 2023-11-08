@@ -1,7 +1,7 @@
 [run]
 source =
-    Game
-    Test
+    /Game
+    /Test
     main
 omit =
     env/*
@@ -18,3 +18,4 @@ exclude_lines =
     def suite
     __str__
     main()
+    unittest.main()

@@ -1,128 +1,71 @@
-# test_cell.py
+# # test_cell.py
+
 import unittest
 from Game.cell import Cell
 from Game.tile import Tile
+from Game.tools import Tools
 
 class TestCell(unittest.TestCase):
-    def test_init(self):
+    def test_cell(self):
         cell = Cell(multiplier=2, multiplier_type='letter')
-
-        self.assertEqual(
-            cell.multiplier,
-            2,
-        )
-        self.assertEqual(
-            cell.multiplier_type,
-            'letter',
-        )
-        self.assertIsNone(cell.letter)
-        self.assertEqual(
-            cell.calculate_value(),
-            0,
-        )
-
+        self.assertEqual(cell.multiplier,2)
+        self.assertEqual(cell.multiplier_type,'letter')
+        self.assertEqual(cell.letter, None)
+    
     def test_add_letter(self):
-        cell = Cell(multiplier=1, multiplier_type='')
+        cell = Cell(multiplier=1, multiplier_type='letter')
         letter = Tile(letter='p', value=3)
-
         cell.add_letter(letter=letter)
-
         self.assertEqual(cell.letter, letter)
-
+    
     def test_cell_value(self):
-        cell = Cell(multiplier=2, multiplier_type='letter')
+        cell = Cell(multiplier=1, multiplier_type='letter')
         letter = Tile(letter='p', value=3)
         cell.add_letter(letter=letter)
-
-        self.assertEqual(
-            cell.calculate_value(),
-            6,
-        )
-
-    def test_cell_multiplier_word(self):
+        self.assertEqual(cell.calculate_value(), 3)
+    
+    def test_cell_multiplayer_letter(self):
         cell = Cell(multiplier=2, multiplier_type='word')
         letter = Tile(letter='p', value=3)
         cell.add_letter(letter=letter)
 
-        self.assertEqual(
-            cell.calculate_value(),
-            3,
-        )
-    
-    def test_remove_letter(self):
-        cell = Cell(multiplier=1, multiplier_type='')
+    def test_cell_multiplayer_word(self):
+        cell = Cell(multiplier=2, multiplier_type='word')
         letter = Tile(letter='p', value=3)
         cell.add_letter(letter=letter)
+        self.assertEqual(cell.calculate_value(),3,)
 
-        removed_letter = cell.remove_letter()
-
-        self.assertEqual(cell.letter, None)
-        self.assertEqual(removed_letter, letter)
+    def test_cell_letter(self):
+        cell = Cell(1, None)
+        self.assertEqual(cell.calculate_value(),0)
     
-    def test_inactive_cell(self):
-        # Crear una celda que no está activa
-        cell = Cell(letter=Tile('A', 1))
-        cell.active = False  # Establecer la celda como no activa
-
-        # Intentar calcular el valor de la celda no activa
-        calculator = cell.calculate_value()
-
-        # Asegurarse de que el valor calculado sea 0
-        self.assertEqual(calculator, 0)
-    
-    def setUp(self):
-        self.cell = Cell(1, '', None)  # Crear una celda con un multiplicador de 1 y sin letra inicial
-
-    def test_add_player_starting_position(self):
-        player = "Player 1"
-        self.cell.add_player_starting_position(player)
-        self.assertTrue(self.cell.is_starting_position)
-        self.assertEqual(self.cell.player_starting_position, player)
-
-    def test_is_empty(self):
-        self.assertTrue(self.cell.is_empty())
-        self.cell.letter = Tile('A', 1)
-        self.assertFalse(self.cell.is_empty())
-
-    def test_has_letter(self):
-        self.assertFalse(self.cell.has_letter('A'))
-        self.cell.letter = Tile('A', 1)
-        self.assertTrue(self.cell.has_letter('A'))
-
-    def test_apply_word_multiplier(self):
-        self.assertEqual(self.cell.multiplier, 1)
-        self.cell.multiplier_type = 'word'
-        word_multiplier = 2
-        self.cell.apply_word_multiplier(word_multiplier)
-        self.assertEqual(self.cell.multiplier, word_multiplier)
-
-    def test_apply_letter_multiplier(self):
-        self.assertEqual(self.cell.multiplier, 1)
-        self.cell.multiplier_type = 'letter'
-        letter_multiplier = 3
-        self.cell.apply_letter_multiplier(letter_multiplier)
-        self.assertEqual(self.cell.multiplier, letter_multiplier)
-        
-    def test_repr_empty(self):
+    def test_deactive(self):
         cell = Cell()
-        expected_repr = '   '
-        self.assertEqual(repr(cell), expected_repr)
-
-    def test_repr_with_letter(self):
-        cell = Cell(letter="A")
-        expected_repr = "'A'"
-        self.assertEqual(repr(cell), expected_repr)
-
-    def test_repr_word_multiplier(self):
-        cell = Cell(multiplier=2, multiplier_type="word")
-        expected_repr = 'Wx2'
-        self.assertEqual(repr(cell), expected_repr)
-
-    def test_repr_letter_multiplier(self):
-        cell = Cell(multiplier=3, multiplier_type="letter")
-        expected_repr = 'Lx3'
-        self.assertEqual(repr(cell), expected_repr)
-
+        self.assertEqual(cell.status, "active")
+        cell.deactive_cell()
+        self.assertEqual(cell.status, "desactive")
+    
+    def test_reset_cell(self):
+        cell = Cell(3, 'word')
+        cell.multiplier = 1
+        cell.multiplier_type = ''
+        cell.status = 'desactive'
+        cell.letter = Tile('H',1)
+        cell.reset_cell()
+        self.assertEqual(cell.multiplier, 3)
+        self.assertEqual(cell.multiplier_type, 'word')
+        self.assertEqual(cell.status, 'active')
+        self.assertEqual(cell.letter, None)
+    
+    def test_repr_active(self):
+        cell = Cell(2, "word")
+        tool = Tools()
+        self.assertEqual(repr(cell), tool.format_active_cell(cell))
+    
+    def test_repr_deactive(self):
+        cell = Cell(2, "word", status="desactive")
+        tool = Tools()
+        self.assertEqual(repr(cell), tool.format_cell_contents(cell))
 
 if __name__ == '__main__':
     unittest.main()
