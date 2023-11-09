@@ -92,7 +92,7 @@ class Main:
     
     def get_word_location_orientation(self):
         while True:
-            word = input('Ingrese palabra (0 para pasar): ')
+            word = input('Ingrese la palabra (0 para volver): ')
             word = self.game.clean_word_to_use(word)
             if word == '0':
                 return word, None, None

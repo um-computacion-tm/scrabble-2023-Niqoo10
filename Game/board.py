@@ -3,7 +3,7 @@
 from Game.cell import Cell
 from Game.models import Miscellaneos
 from Game.dictionary import Dictionary
-from Game.converter import Converter
+from Game.wordconverter import Converter
 from Game.tools import Tools
 
 class Board:

@@ -1,7 +1,7 @@
 # test_converter.py
 
 import unittest
-from Game.converter import Converter
+from Game.wordconverter import Converter
 from Game.board import Board
 
 class TestConverter(unittest.TestCase):

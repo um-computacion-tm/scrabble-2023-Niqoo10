@@ -1,6 +1,6 @@
 # models.py
 
-from Game.converter import Converter
+from Game.wordconverter import Converter
 from Game.tools import Tools
 
 class Miscellaneos():    

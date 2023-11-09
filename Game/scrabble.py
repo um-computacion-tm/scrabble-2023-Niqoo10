@@ -5,7 +5,7 @@ from Game.player import Player
 from Game.bagtiles import BagTiles
 from Game.models import Miscellaneos
 from Game.dictionary import Dictionary
-from Game.converter import Converter
+from Game.wordconverter import Converter
 import random
 import uuid
 
