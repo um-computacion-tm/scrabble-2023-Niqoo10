@@ -82,19 +82,24 @@ class Main:
                 word, location, orientation = self.get_word_location_orientation()
 
                 if word == '0':
-                    break
+                    return 'finish'
 
-                self.validate_and_put_word(word, location, orientation)
-                return 'finish'
-
+                self.handle_word_placement(word, location, orientation)
+        
             except (InvalidWordException, InvalidRackException) as e:
-                print(f'Error: {e}')
-                validate = input('Puedes volver apretando 0 o pulsa cualquier tecla para continuar: ')
+                self.handle_placement_error(e)
 
-                if validate == '0':
-                    break
+    def handle_word_placement(self, word, location, orientation):
+        self.validate_and_put_word(word, location, orientation)
 
+    def handle_placement_error(self, error):
+        print(f'Error: {error}')
+        validate = input('Puedes volver apretando 0 o pulsa cualquier tecla para continuar: ')
     
+        if validate == '0':
+            return
+
+
     '''def place_word(self):
         while True:
             try:
