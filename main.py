@@ -75,8 +75,27 @@ class Main:
         print("Puntajes de los jugadores:")
         for _, player in enumerate(sorted_players, start=1):
             print(f"Jugador {player.id}: Puntaje = {player.score}")
-    
+
     def place_word(self):
+        while True:
+            try:
+                word, location, orientation = self.get_word_location_orientation()
+
+                if word == '0':
+                    break
+
+                self.validate_and_put_word(word, location, orientation)
+                return 'finish'
+
+            except (InvalidWordException, InvalidRackException) as e:
+                print(f'Error: {e}')
+                validate = input('Puedes volver apretando 0 o pulsa cualquier tecla para continuar: ')
+
+                if validate == '0':
+                    break
+
+    
+    '''def place_word(self):
         while True:
             try:
                 word, location, orientation = self.get_word_location_orientation()
@@ -88,7 +107,7 @@ class Main:
                 print(f'Error: {e}')
                 validate = input('Puedes volver apretando 0 o pulsa cualquier tecla para continuar: ')
                 if validate == '0':
-                    break
+                    break'''
     
     def get_word_location_orientation(self):
         while True:
